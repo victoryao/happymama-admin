@@ -158,9 +158,9 @@
     <header class="header header-fixed navbar">
         <div class="brand">
             <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
-            <a href="index.html" class="navbar-brand">
+            <a href="/home.do" class="navbar-brand">
                 <i class="fa fa-stop mg-r-sm"></i>
-                <span class="heading-font">好阿姨<b>管理后台</b></span>
+                <span class="heading-font"><b>好阿姨管理后台</b></span>
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right off-right">
@@ -195,7 +195,7 @@
                                     <i class="fa fa-microphone"></i>
                                 </div>
                                 <div>
-                                    <h3 class="no-margin">5468</h3> 培训学员
+                                    <h3 class="no-margin">${studentCount}</h3> 培训学员
                                 </div>
                             </div>
                         </section>
@@ -207,7 +207,7 @@
                                     <i class="fa fa-anchor"></i>
                                 </div>
                                 <div>
-                                    <h3 class="no-margin">2,300</h3> 讲师数
+                                    <h3 class="no-margin">${babySitterCount}</h3> 讲师数
                                 </div>
                             </div>
                         </section>
@@ -219,7 +219,7 @@
                                     <i class="fa fa-magnet"></i>
                                 </div>
                                 <div>
-                                    <h3 class="no-margin">3,823</h3> 月嫂数
+                                    <h3 class="no-margin">${teacherCount}</h3> 月嫂数
                                 </div>
                             </div>
                         </section>

@@ -48,6 +48,15 @@
 <div class="app">
 
     <header class="header header-fixed navbar">
+        <div class="brand">
+            <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
+            <a href="/home.do" class="navbar-brand text-white">
+                <i class="fa fa-stop mg-r-sm"></i>
+                <span class="heading-font">
+                <b>好阿姨管理后台</b>
+                </span>
+            </a>
+        </div>
         <ul class="nav navbar-nav navbar-right off-right">
             <li class="hidden-xs">
                 <a href="javascript:;">
@@ -75,21 +84,26 @@
                                     <input type="hidden" name="page" id="page"/>
                                     <div class="form-group">
                                         <label class="sr-only">姓名</label>
-                                        <input type="text" class="form-control" placeholder="姓名">
+                                        <input type="text" name="name" class="form-control" value="${name}"
+                                               placeholder="姓名">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="exampleInputPassword2">手机</label>
-                                        <input type="text" class="form-control" placeholder="手机号">
+                                        <input type="text" name="phone" class="form-control" value="${phone}"
+                                               placeholder="手机号">
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox">学员
+                                            <input type="checkbox" name="types" value="0"
+                                                   <#if (types?contains("0"))!>checked </#if>>学员
                                         </label>
                                         <label>
-                                            <input type="checkbox">月嫂
+                                            <input type="checkbox" name="types" value="1"
+                                                   <#if (types?contains("1"))!>checked </#if>>月嫂
                                         </label>
                                         <label>
-                                            <input type="checkbox">讲师
+                                            <input type="checkbox" name="types" value="2"
+                                                   <#if (types?contains("2"))!>checked </#if>>讲师
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-default">查询</button>

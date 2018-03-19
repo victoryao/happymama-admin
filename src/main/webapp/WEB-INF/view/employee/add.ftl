@@ -43,10 +43,10 @@
     <header class="header header-fixed navbar">
         <div class="brand">
             <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
-            <a href="index.html" class="navbar-brand text-white">
+            <a href="/home.do" class="navbar-brand text-white">
                 <i class="fa fa-stop mg-r-sm"></i>
                 <span class="heading-font">
-                Cameo<b>ADMIN</b>
+                <b>好阿姨管理后台</b>
                 </span>
             </a>
         </div>
@@ -162,15 +162,15 @@
                                                         <label class="col-sm-2 control-label">职位</label>
                                                         <div class="col-sm-10">
                                                             <div class="checkbox">
-                                                                <label><input type="checkbox" checked="" name="type"
+                                                                <label><input type="checkbox" checked="" name="types"
                                                                               value="0">学员</label>
                                                             </div>
                                                             <div class="checkbox">
-                                                                <label><input type="checkbox" name="type"
+                                                                <label><input type="checkbox" name="types"
                                                                               value="1">月嫂</label>
                                                             </div>
                                                             <div class="checkbox">
-                                                                <label><input type="checkbox" name="type"
+                                                                <label><input type="checkbox" name="types"
                                                                               value="2">讲师</label>
                                                             </div>
                                                         </div>

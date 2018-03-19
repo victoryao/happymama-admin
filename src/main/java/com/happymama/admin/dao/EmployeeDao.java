@@ -19,11 +19,18 @@ public interface EmployeeDao {
     public boolean addEmployee(EmployeeDO employeeDO);
 
 
-    @Select("select * from employee limit #{offset},#{limit}")
-    public List<EmployeeDO> getEmployeeList(@Param("offset") int offset, @Param("limit") int limit);
+    @Select({"<script>", "select * from employee where 1=1  ",
+            "<if test='name != null'> and name = #{name}</if>",
+            "<if test='phone != null'> and phone = #{phone}</if> ",
+            "<if test='types != null'> and id in (select employee_id from employee_position where position in (#{types}))</if> ",
+            "limit #{offset},#{limit}", "</script>"})
+    public List<EmployeeDO> getEmployeeList(@Param("name") String name, @Param("phone") String phone, @Param("types") String types, @Param("offset") int offset, @Param("limit") int limit);
 
-    @Select("select count(1) from employee")
-    public long getEmployeeCount();
-
+    @Select({"<script>", "select count(1) from employee where 1=1 ",
+            "<if test='name != null'> and name = #{name}</if>",
+            "<if test='phone != null'> and phone = #{phone}</if> ",
+            "<if test='types != null'> and id in (select employee_id from employee_position where position in (#{types}))</if> ",
+            "</script>"})
+    public long getEmployeeCount(@Param("name") String name, @Param("phone") String phone, @Param("types") String types);
 
 }
