@@ -130,6 +130,7 @@
                                                 <th>性别</th>
                                                 <th>手机</th>
                                                 <th>身份证</th>
+                                                <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -141,6 +142,7 @@
                                                 <td>${employee.gender}</td>
                                                 <td>${employee.phone}</td>
                                                 <td>${employee.idcard}</td>
+                                                <td><a href="/admin/to/${employee.id}/update.do" class="btn btn-danger btn-sm">修改</a></td>
                                             </tr>
                                             </#list>
                                             </tbody>

@@ -18,6 +18,21 @@ public interface EmployeeDao {
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     public boolean addEmployee(EmployeeDO employeeDO);
 
+    @Select({"<script>", "update employee set updated = now()",
+            "<if test='name != null'> , name = #{name}</if>",
+            "<if test='gender != null'> , gender = #{gender}</if>",
+            "<if test='phone != null'> , phone = #{phone}</if> ",
+            "<if test='birthday != null'> , birthday = #{birthday}</if> ",
+            "<if test='idcard != null'> , idcard = #{idcard}</if> ",
+            "<if test='hometown != null'> , hometown = #{hometown}</if> ",
+            "<if test='introduce != null'> , introduce = #{introduce}</if> ",
+            " where id = #{id}", "</script>"})
+    public void updateEmployee(EmployeeDO employeeDO);
+
+
+    @Select("select * from employee where id = #{id}")
+    public EmployeeDO getEmployeeById(@Param("id") int id);
+
 
     @Select({"<script>", "select * from employee where 1=1  ",
             "<if test='name != null'> and name = #{name}</if>",

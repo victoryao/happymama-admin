@@ -27,18 +27,38 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @RequestMapping(value = "/admin/employee/add", method = RequestMethod.POST)
-    public String addEmployee(@RequestParam String name,
-                              @RequestParam String gender,
-                              @RequestParam String phone,
-                              @RequestParam String birthday,
-                              @RequestParam String IDCard,
-                              @RequestParam String hometown,
-                              @RequestParam(required = false) String introduce,
-                              @RequestParam String types) throws ParseException
+    public String addEmployee(
+            @RequestParam String name,
+            @RequestParam String gender,
+            @RequestParam String phone,
+            @RequestParam String birthday,
+            @RequestParam String IDCard,
+            @RequestParam String hometown,
+            @RequestParam(required = false) String introduce,
+            @RequestParam String types) throws ParseException
 
     {
 
         employeeService.addEmployee(name, gender, phone, birthday, IDCard, hometown, introduce, types);
+
+        return "/home/home";
+    }
+
+    @RequestMapping(value = "/admin/employee/update", method = RequestMethod.POST)
+    public String updateEmployee(
+            @RequestParam int id,
+            @RequestParam String name,
+            @RequestParam String gender,
+            @RequestParam String phone,
+            @RequestParam String birthday,
+            @RequestParam String IDCard,
+            @RequestParam String hometown,
+            @RequestParam(required = false) String introduce,
+            @RequestParam String types) throws ParseException
+
+    {
+
+        employeeService.updateEmployee(id, name, gender, phone, birthday, IDCard, hometown, introduce, types);
 
         return "/home/home";
     }

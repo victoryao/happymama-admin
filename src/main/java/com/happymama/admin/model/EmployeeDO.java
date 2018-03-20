@@ -24,6 +24,7 @@ public class EmployeeDO {
     private String idcard;
     private String hometown;
     private String introduce;
+    private String types;
     private Date created;
     private Date updated;
 }

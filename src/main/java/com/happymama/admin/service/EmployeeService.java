@@ -9,7 +9,6 @@ import com.happymama.admin.utils.QueryResult;
 import lombok.extern.java.Log;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,6 +28,12 @@ public class EmployeeService {
     @Resource
     private EmployeePositionDao employeePositionDao;
 
+
+    public EmployeeDO getEmployeeById(int id) {
+        return employeeDao.getEmployeeById(id);
+    }
+
+
     public boolean addEmployee(String name, String gender, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
@@ -45,6 +50,25 @@ public class EmployeeService {
             }
         }
         return result;
+    }
+
+    public boolean updateEmployee(int id, String name, String gender, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
+        if (birthday == null) return false;
+        Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
+
+        EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender))
+                .phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
+
+        employeeDao.updateEmployee(employeeDO);
+
+        if (StringUtils.isNotBlank(types)) {
+            delEmployeePosition(id);
+            List<String> typeList = Splitter.on(",").splitToList(types);
+            for (String type : typeList) {
+                addEmployeePosition(employeeDO.getId(), Integer.parseInt(type));
+            }
+        }
+        return true;
     }
 
     public QueryResult<EmployeeDO> getEmployeeList(String name, String phone, String types, int offset, int limit) {
@@ -64,8 +88,17 @@ public class EmployeeService {
         return employeePositionDao.addEmployeePosition(EmployeePositionDO.builder().employeeId(employeeId).position(position).build());
     }
 
+    public boolean delEmployeePosition(int employeeId) {
+        return employeePositionDao.delEmployeePosition(employeeId);
+    }
+
     public long getCountByPosition(int type) {
         return employeePositionDao.getCountByPosition(type);
     }
+
+    public List<Integer> getPositionListByEmployeeId(int employeeId) {
+        return employeePositionDao.getPositionListByEmployeeId(employeeId);
+    }
+
 
 }
