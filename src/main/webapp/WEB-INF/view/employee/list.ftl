@@ -1,8 +1,9 @@
+<#assign base=request.contextPath />
 <!doctype html>
 <html class="no-js" lang="">
 
 <head>
-
+    <base id="base" href="${base}">
     <meta charset="utf-8">
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
@@ -17,21 +18,21 @@
 
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href=${base}"/css/animate.min.css">
 
-    <link rel="stylesheet" href="/css/panel.css">
+    <link rel="stylesheet" href="${base}/css/panel.css">
 
-    <link rel="stylesheet" href="/css/skins/palette.1.css" id="skin">
-    <link rel="stylesheet" href="/css/fonts/style.1.css" id="font">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="${base}/css/skins/palette.1.css" id="skin">
+    <link rel="stylesheet" href="${base}/css/fonts/style.1.css" id="font">
+    <link rel="stylesheet" href="${base}/css/main.css">
 
 
     <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-    <script src="/js/respond.min.js"></script>
+    <script src="${base}/js/html5shiv.js"></script>
+    <script src="${base}/js/respond.min.js"></script>
     <![endif]-->
 
-    <script src="/vendor/modernizr.js"></script>
+    <script src="${base}/vendor/modernizr.js"></script>
 
     <script language="javascript">
         //到指定的分页页面
@@ -50,7 +51,7 @@
     <header class="header header-fixed navbar">
         <div class="brand">
             <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
-            <a href="/home.do" class="navbar-brand text-white">
+            <a href="${base}/home.do" class="navbar-brand text-white">
                 <i class="fa fa-stop mg-r-sm"></i>
                 <span class="heading-font">
                 <b>好阿姨管理后台</b>
@@ -80,7 +81,7 @@
                     <div class="col-lg-12">
                         <section class="panel">
                             <div class="panel-body">
-                                <form class="form-inline" role="form" action="/admin/employee/list.do">
+                                <form class="form-inline" role="form" action="${base}/admin/employee/list.do">
                                     <input type="hidden" name="page" id="page"/>
                                     <div class="form-group">
                                         <label class="sr-only">姓名</label>
@@ -120,7 +121,7 @@
                             <header class="panel-heading">员工列表</header>
                             <div class="panel-body no-padding">
                                 <div class="table-responsive">
-                                    <form action="/admin/employee/list.do">
+                                    <form action="${base}/admin/employee/list.do">
                                         <table class="table table-striped responsive" data-sortable>
                                             <thead>
                                             <tr>
@@ -139,10 +140,17 @@
                                                 <td>${employee.id}</td>
                                                 <td>${employee.name}</td>
                                                 <td>${employee.name}</td>
-                                                <td>${employee.gender}</td>
+                                                <td>
+                                                    <#if (employee.gender =="1")>男 </#if>
+                                                    <#if (employee.gender =="0")>女 </#if>
+                                                </td>
                                                 <td>${employee.phone}</td>
                                                 <td>${employee.idcard}</td>
-                                                <td><a href="/admin/to/${employee.id}/update.do" class="btn btn-danger btn-sm">修改</a></td>
+                                                <td><a href="${base}/admin/to/${employee.id}/update.do"
+                                                       class="btn btn-danger btn-sm">修改</a>
+                                                    <#--<a href="/admin/to/${employee.id}/update.do"-->
+                                                       <#--class="btn btn-danger btn-sm">订单</a>-->
+                                                </td>
                                             </tr>
                                             </#list>
                                             </tbody>
@@ -162,21 +170,21 @@
     </section>
 </div>
 
-<script src="/vendor/jquery-1.11.1.min.js"></script>
-<script src="/bootstrap/js/bootstrap.js"></script>
-<script src="/vendor/jquery.easing.min.js"></script>
-<script src="/vendor/jquery.placeholder.js"></script>
-<script src="/vendor/fastclick.js"></script>
+<script src="${base}/vendor/jquery-1.11.1.min.js"></script>
+<script src="${base}/bootstrap/js/bootstrap.js"></script>
+<script src="${base}/vendor/jquery.easing.min.js"></script>
+<script src="${base}/vendor/jquery.placeholder.js"></script>
+<script src="${base}/vendor/fastclick.js"></script>
 
 
-<script src="/vendor/table-sortable/sortable.min.js"></script>
-<script src="/vendor/offline/offline.min.js"></script>
-<script src="/vendor/pace/pace.min.js"></script>
+<script src="${base}/vendor/table-sortable/sortable.min.js"></script>
+<script src="${base}/vendor/offline/offline.min.js"></script>
+<script src="${base}/vendor/pace/pace.min.js"></script>
 
 
-<script src="/js/off-canvas.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/panel.js"></script>
+<script src="${base}/js/off-canvas.js"></script>
+<script src="${base}/js/main.js"></script>
+<script src="${base}/js/panel.js"></script>
 </body>
 
 </html>

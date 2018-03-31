@@ -35,8 +35,8 @@ public class SessionFilter implements Filter {
         // 如果Session为空，则跳转到指定页面
         if (session == null || session.getAttribute(Constant.sessionCheckKey) == null) {
             requestURI = request.getRequestURI();
-            if (requestURI.contains("admin")) {
-                response.sendRedirect("/to/login.do");
+            if (!requestURI.contains("login")) {
+                response.sendRedirect(request.getContextPath() + "/to/login.do");
             } else {
                 chain.doFilter(req, res);
             }

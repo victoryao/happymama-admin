@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import com.happymama.admin.constant.Constant;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.service.EmployeeService;
+import com.happymama.admin.utils.FileUtils;
 import com.happymama.admin.utils.PageView;
 import com.happymama.admin.utils.QueryResult;
 import org.apache.commons.lang.StringUtils;
@@ -12,10 +13,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by yaoqiang on 2018/3/18.
@@ -34,12 +39,13 @@ public class EmployeeController {
             @RequestParam String birthday,
             @RequestParam String IDCard,
             @RequestParam String hometown,
+            @RequestParam MultipartFile photo,
             @RequestParam(required = false) String introduce,
-            @RequestParam String types) throws ParseException
+            @RequestParam String types) throws ParseException, IOException
 
     {
-
-        employeeService.addEmployee(name, gender, phone, birthday, IDCard, hometown, introduce, types);
+        String path = FileUtils.saveFile(photo);
+        employeeService.addEmployee(name, gender, path, phone, birthday, IDCard, hometown, introduce, types);
 
         return "/home/home";
     }

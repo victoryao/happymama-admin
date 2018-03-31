@@ -8,7 +8,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/admin/to/employee/add.do">
+                        <a href="${base}/admin/to/employee/add.do">
                             <span>员工注册</span>
                         </a>
                     </li>
@@ -22,7 +22,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/admin/employee/list.do">
+                        <a href="${base}/admin/employee/list.do">
                             <span>员工查询</span>
                         </a>
                     </li>

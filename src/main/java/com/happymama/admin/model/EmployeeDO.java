@@ -20,6 +20,7 @@ public class EmployeeDO {
     private String name;
     private int gender;
     private String phone;
+    private String photo;
     private Date birthday;
     private String idcard;
     private String hometown;
