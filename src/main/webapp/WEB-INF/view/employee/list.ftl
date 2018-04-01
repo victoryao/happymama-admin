@@ -150,7 +150,7 @@
                                                        class="btn btn-danger btn-sm">修改</a>
                                                     <a href="${base}/admin/${employee.id}/delete.do"
                                                        class="btn btn-danger btn-sm">删除</a>
-                                                    <a href="/admin/order/list.do?eId=${employee.id}"
+                                                    <a href="${base}/admin/order/list.do?eId=${employee.id}"
                                                        class="btn btn-danger btn-sm">订单</a>
                                                 </td>
                                             </tr>
