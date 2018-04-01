@@ -108,6 +108,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="text" name="phone" class="form-control"
                                                                    title="手机" data-parsley-required="true"
+                                                                   data-parsley-type="number"
                                                                    data-parsley-trigger="change">
                                                         </div>
                                                     </div>

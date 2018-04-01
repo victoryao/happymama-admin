@@ -41,21 +41,8 @@ public class NavController {
         return "/employee/add";
     }
 
-    @RequestMapping(value = "/admin/to/{eId}/update", method = RequestMethod.GET)
-    public String updateEmployee(@PathVariable int eId, ModelMap modelMap
 
-    ) {
-        List<Integer> positionList = employeeService.getPositionListByEmployeeId(eId);
-        String types = "";
-        if (!CollectionUtils.isEmpty(positionList)) {
-            for (int position : positionList) {
-                types += position + ",";
-            }
-        }
-        EmployeeDO employeeDO = employeeService.getEmployeeById(eId);
-        employeeDO.setTypes(types);
-        modelMap.addAttribute("employeeDO", employeeDO);
-        return "/employee/edit";
-    }
+
+
 
 }

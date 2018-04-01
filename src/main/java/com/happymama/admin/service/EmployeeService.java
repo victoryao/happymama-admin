@@ -10,6 +10,7 @@ import lombok.extern.java.Log;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
@@ -31,6 +32,12 @@ public class EmployeeService {
 
     public EmployeeDO getEmployeeById(int id) {
         return employeeDao.getEmployeeById(id);
+    }
+
+    @Transactional
+    public void deleteEmployeeById(int id) {
+        employeeDao.deleteEmployeeById(id);
+        employeePositionDao.delEmployeePosition(id);
     }
 
 

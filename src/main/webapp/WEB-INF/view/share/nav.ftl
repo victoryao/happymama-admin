@@ -28,6 +28,20 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="dropdown show-on-hover">
+                <a href="javascript:;" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
+                    <span>订单管理</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="${base}/admin/order/list.do">
+                            <span>订单查询</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </aside>

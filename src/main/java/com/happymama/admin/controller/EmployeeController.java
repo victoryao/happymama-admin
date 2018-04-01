@@ -10,6 +10,8 @@ import com.happymama.admin.utils.QueryResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,13 +43,14 @@ public class EmployeeController {
             @RequestParam String hometown,
             @RequestParam MultipartFile photo,
             @RequestParam(required = false) String introduce,
-            @RequestParam String types) throws ParseException, IOException
+            @RequestParam String types,
+            ModelMap modelMap) throws ParseException, IOException
 
     {
         String path = FileUtils.saveFile(photo);
         employeeService.addEmployee(name, gender, path, phone, birthday, IDCard, hometown, introduce, types);
-
-        return "/home/home";
+        modelMap.addAttribute("message", "增加成功");
+        return "/share/result";
     }
 
     @RequestMapping(value = "/admin/employee/update", method = RequestMethod.POST)
@@ -60,14 +63,33 @@ public class EmployeeController {
             @RequestParam String IDCard,
             @RequestParam String hometown,
             @RequestParam(required = false) String introduce,
-            @RequestParam String types) throws ParseException
+            @RequestParam String types,
+            ModelMap modelMap) throws ParseException
 
     {
 
         employeeService.updateEmployee(id, name, gender, phone, birthday, IDCard, hometown, introduce, types);
-
-        return "/home/home";
+        modelMap.addAttribute("message", "修改成功");
+        return "/share/result";
     }
+
+    @RequestMapping(value = "/admin/{eId}/update", method = RequestMethod.GET)
+    public String updateEmployee(@PathVariable int eId, ModelMap modelMap
+
+    ) {
+        List<Integer> positionList = employeeService.getPositionListByEmployeeId(eId);
+        String types = "";
+        if (!CollectionUtils.isEmpty(positionList)) {
+            for (int position : positionList) {
+                types += position + ",";
+            }
+        }
+        EmployeeDO employeeDO = employeeService.getEmployeeById(eId);
+        employeeDO.setTypes(types);
+        modelMap.addAttribute("employeeDO", employeeDO);
+        return "/employee/edit";
+    }
+
 
     @RequestMapping("/admin/employee/list")
     public String toEmployeeListPage(
@@ -91,6 +113,17 @@ public class EmployeeController {
         modelMap.addAttribute("phone", phone);
         modelMap.addAttribute("types", types);
         return "/employee/list";
+    }
+
+    @RequestMapping(value = "/admin/{eId}/delete", method = RequestMethod.GET)
+    public String deleteEmployee(@PathVariable int eId, ModelMap modelMap
+
+    ) {
+        employeeService.deleteEmployeeById(eId);
+        modelMap.addAttribute("message", "删除成功");
+        modelMap.addAttribute("nextUrl", "/admin/employee/list.do");
+        modelMap.addAttribute("nextStep", "继续删除");
+        return "/share/result";
     }
 
 
