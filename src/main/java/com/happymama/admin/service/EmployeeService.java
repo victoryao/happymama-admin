@@ -59,11 +59,11 @@ public class EmployeeService {
         return result;
     }
 
-    public boolean updateEmployee(int id, String name, String gender, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
+    public boolean updateEmployee(int id, String name, String gender, String path, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
 
-        EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender))
+        EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender)).photo(path)
                 .phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         employeeDao.updateEmployee(employeeDO);

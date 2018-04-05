@@ -8,7 +8,7 @@
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
-    <title>好阿姨管理系统</title>
+    <title>快乐妈咪管理后台</title>
 
     <link rel="stylesheet" href="${base}/vendor/offline/theme.css">
     <link rel="stylesheet" href="${base}/vendor/pace/theme.css">
@@ -43,16 +43,9 @@
             <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
             <a href="${base}/home.do" class="navbar-brand">
                 <i class="fa fa-stop mg-r-sm"></i>
-                <span class="heading-font"><b>好阿姨管理后台</b></span>
+                <span class="heading-font"><b>快乐妈咪管理后台</b></span>
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right off-right">
-            <li class="hidden-xs">
-                <a href="javascript:;">
-                    +Gerald Theodore Morris
-                </a>
-            </li>
-        </ul>
     </header>
 
     <section class="layout">
@@ -65,7 +58,7 @@
             <div class="content-wrap">
                 <div class="row mg-b">
                     <div class="col-xs-6">
-                        <h3 class="no-margin">好阿姨</h3>
+                        <h3 class="no-margin">快乐妈咪管理后台/h3>
                         <small>欢迎回来</small>
                     </div>
                 </div>

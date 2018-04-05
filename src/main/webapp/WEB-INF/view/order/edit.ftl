@@ -8,7 +8,7 @@
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
-    <title>好阿姨</title>
+    <title>快乐妈咪管理后台</title>
     <link rel="stylesheet" href="${base}/vendor/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="${base}/vendor/dropzone/dropzone.css">
     <link rel="stylesheet" href="${base}/vendor/slider/slider.css">
@@ -40,7 +40,7 @@
             <a href="${base}/home.do" class="navbar-brand text-white">
                 <i class="fa fa-stop mg-r-sm"></i>
                 <span class="heading-font">
-                <b>好阿姨管理后台</b>
+                <b>快乐妈咪管理后台</b>
                 </span>
             </a>
         </div>

@@ -8,7 +8,7 @@
     <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
 
-    <title>好阿姨管理后台</title>
+    <title>快乐妈咪管理后台</title>
 
 
     <link rel="stylesheet" href="${base}/vendor/offline/theme.css">
@@ -41,7 +41,7 @@
                 <header class="panel-heading">请登陆</header>
                 <div class="bg-white user pd-md">
                     <h6>
-                        <strong>欢迎</strong>使用好阿姨管理后台</h6>
+                        <strong>欢迎</strong>使用快乐妈咪管理后台</h6>
                     <form role="form" action="${base}/login.do">
                         <input type="text" name="name" class="form-control mg-b-sm" placeholder="用户名" autofocus>
                         <input type="password" name="password" class="form-control" placeholder="密码">

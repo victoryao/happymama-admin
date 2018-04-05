@@ -18,6 +18,7 @@ public interface EmployeeDao {
     @Update({"<script>", "update employee set updated = now()",
             "<if test='name != null'> , name = #{name}</if>",
             "<if test='gender != null'> , gender = #{gender}</if>",
+            "<if test='photo != null'> , photo = #{photo}</if>",
             "<if test='phone != null'> , phone = #{phone}</if> ",
             "<if test='birthday != null'> , birthday = #{birthday}</if> ",
             "<if test='idcard != null'> , idcard = #{idcard}</if> ",

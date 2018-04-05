@@ -15,7 +15,6 @@ public class FileUtils {
 
     public static String saveFile(MultipartFile photo) throws IOException {
         if (!photo.isEmpty()) {
-
             String originalFileName = photo.getOriginalFilename();
             // 新的图片名称
             String newFileName = UUID.randomUUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
@@ -24,8 +23,8 @@ public class FileUtils {
             File newFile = new File(path);
             // 将内存中的数据写入磁盘
             photo.transferTo(newFile);
-            return path;
+            return newFileName;
         }
-        return "";
+        return null;
     }
 }
