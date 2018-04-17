@@ -42,7 +42,7 @@
                 <div class="bg-white user pd-md">
                     <h6>
                         <strong>欢迎</strong>使用快乐妈咪管理后台</h6>
-                    <form role="form" action="${base}/login.do">
+                    <form role="form" action="${base}/login.do" method="post">
                         <input type="text" name="name" class="form-control mg-b-sm" placeholder="用户名" autofocus>
                         <input type="password" name="password" class="form-control" placeholder="密码">
                         <button class="btn btn-info btn-block" type="submit">登陆</button>
