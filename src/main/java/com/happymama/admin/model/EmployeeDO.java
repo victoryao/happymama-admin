@@ -22,6 +22,7 @@ public class EmployeeDO {
     private String phone;
     private String photo;
     private Date birthday;
+    private Date startDate;
     private String idcard;
     private String hometown;
     private String introduce;

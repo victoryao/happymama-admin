@@ -5,8 +5,11 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="description"
+          content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。"/>
+    <meta name="aplus-xplug" content="NONE">
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政"/>
+    <meta name="baidu-site-verification" content="71R86N1GBt"/>
 
     <title>快乐妈咪管理后台</title>
 
@@ -95,16 +98,12 @@
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="types" value="0"
-                                                   <#if (types?contains("0"))!>checked </#if>>学员
-                                        </label>
-                                        <label>
                                             <input type="checkbox" name="types" value="1"
                                                    <#if (types?contains("1"))!>checked </#if>>月嫂
                                         </label>
                                         <label>
-                                            <input type="checkbox" name="types" value="2"
-                                                   <#if (types?contains("2"))!>checked </#if>>讲师
+                                            <input type="checkbox" name="types" value="3"
+                                                   <#if (types?contains("3"))!>checked </#if>>育儿嫂
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-default">查询</button>
@@ -139,7 +138,11 @@
                                             <tr>
                                                 <td>${employee.id}</td>
                                                 <td>
-                                                    <img src="/imgs/${employee.photo}" height="100" width="100"/>
+                                                    <#if (employee.photo == "")><img src="${base}/img/default.jpg"
+                                                                                     height="100" width="100"/> </#if>
+                                                    <#if (employee.photo != "")><img
+                                                            src="${base}/imgs/${employee.photo}" height="100"
+                                                            width="100"/> </#if>
                                                 </td>
                                                 <td>${employee.name}</td>
                                                 <td>
@@ -150,8 +153,10 @@
                                                 <td>${employee.idcard}</td>
                                                 <td><a href="${base}/admin/${employee.id}/update.do"
                                                        class="btn btn-danger btn-sm">修改</a>
-                                                    <a href="${base}/admin/${employee.id}/delete.do"
-                                                       class="btn btn-danger btn-sm">删除</a>
+                                                <#--<a href="${base}/admin/${employee.id}/delete.do"-->
+                                                <#--class="btn btn-danger btn-sm">删除</a>-->
+                                                    <a href="${base}/admin/course/list.do?eId=${employee.id}"
+                                                       class="btn btn-danger btn-sm">学费</a>
                                                     <a href="${base}/admin/order/list.do?eId=${employee.id}"
                                                        class="btn btn-danger btn-sm">订单</a>
                                                 </td>

@@ -14,12 +14,22 @@ public class CustomerService {
     @Resource
     private CustomerDao customerDao;
 
-    public boolean addCustomer(CustomerDO customerDO) {
-        return customerDao.addCustomer(customerDO);
+    public CustomerDO addCustomer(CustomerDO customerDO) {
+        CustomerDO cDo = customerDao.getCustomerByPhone(customerDO.getPhone());
+        if (cDo != null) {
+
+            return cDo;
+        }
+        customerDao.addCustomer(customerDO);
+        return customerDO;
     }
 
     public CustomerDO getCustomerById(int customerId) {
         return customerDao.getCustomerById(customerId);
+    }
+
+    public CustomerDO getCustomerByPhone(String phone) {
+        return customerDao.getCustomerByPhone(phone);
     }
 
     public void updateCustomer(CustomerDO customerDO) {

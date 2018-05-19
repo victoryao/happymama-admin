@@ -3,6 +3,7 @@ package com.happymama.admin.controller;
 import com.happymama.admin.enums.PositionEnum;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.service.EmployeeService;
+import com.happymama.admin.service.StatisticsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
@@ -22,6 +23,8 @@ public class NavController {
 
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private StatisticsService statisticsService;
 
     @RequestMapping("/to/login")
     public String toLoginPage() {
@@ -33,6 +36,8 @@ public class NavController {
         modelMap.addAttribute("studentCount", employeeService.getCountByPosition(PositionEnum.STUDENT.getVal()));
         modelMap.addAttribute("babySitterCount", employeeService.getCountByPosition(PositionEnum.BABYSITTER.getVal()));
         modelMap.addAttribute("teacherCount", employeeService.getCountByPosition(PositionEnum.TEACHER.getVal()));
+        modelMap.addAttribute("courseInput", statisticsService.getCourseInput());
+        modelMap.addAttribute("orderInput", statisticsService.getOrderInput());
         return "/home/home";
     }
 
@@ -40,9 +45,6 @@ public class NavController {
     public String toEmployeePage() {
         return "/employee/add";
     }
-
-
-
 
 
 }

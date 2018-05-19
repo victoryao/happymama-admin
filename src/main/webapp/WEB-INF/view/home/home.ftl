@@ -5,8 +5,10 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。" />
+    <meta name="aplus-xplug" content="NONE">
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政" />
+    <meta name="baidu-site-verification" content="71R86N1GBt" />
 
     <title>快乐妈咪管理后台</title>
 
@@ -58,7 +60,7 @@
             <div class="content-wrap">
                 <div class="row mg-b">
                     <div class="col-xs-6">
-                        <h3 class="no-margin">快乐妈咪管理后台/h3>
+                        <h3 class="no-margin">快乐妈咪管理后台</h3>
                         <small>欢迎回来</small>
                     </div>
                 </div>
@@ -100,7 +102,31 @@
                             </div>
                         </section>
                     </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <section class="panel">
+                            <div class="panel-body">
+                                <div class="circle-icon bg-success">
+                                    <i class="fa fa-microphone"></i>
+                                </div>
+                                <div>
+                                    <h3 class="no-margin">${courseInput}</h3> 培训收入
+                                </div>
+                            </div>
+                        </section>
+                    </div>
 
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <section class="panel">
+                            <div class="panel-body">
+                                <div class="circle-icon bg-success">
+                                    <i class="fa fa-microphone"></i>
+                                </div>
+                                <div>
+                                    <h3 class="no-margin">${orderInput}</h3> 月嫂中介收入
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
 

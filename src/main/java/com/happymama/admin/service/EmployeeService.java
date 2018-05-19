@@ -1,12 +1,15 @@
 package com.happymama.admin.service;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
+import com.google.common.collect.Collections2;
 import com.happymama.admin.dao.EmployeeDao;
 import com.happymama.admin.dao.EmployeePositionDao;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.model.EmployeePositionDO;
 import com.happymama.admin.utils.QueryResult;
 import lombok.extern.java.Log;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -41,12 +45,14 @@ public class EmployeeService {
     }
 
 
-    public boolean addEmployee(String name, String gender, String path, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
+    public boolean addEmployee(String name, String gender, String path, String phone, String birthday, String startDate, String IDCard,
+                               String hometown, String introduce, String types) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
+        Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
         EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path)
-                .phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
+                .startDate(startJobDate).phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         boolean result = employeeDao.addEmployee(employeeDO);
 
@@ -59,12 +65,13 @@ public class EmployeeService {
         return result;
     }
 
-    public boolean updateEmployee(int id, String name, String gender, String path, String phone, String birthday, String IDCard, String hometown, String introduce, String types) throws ParseException {
+    public boolean updateEmployee(int id, String name, String gender, String path, String phone, String birthday, String startDate, String IDCard, String hometown, String introduce, String types) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
+        Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
         EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender)).photo(path)
-                .phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
+                .phone(phone).birthday(birthdayDate).startDate(startJobDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         employeeDao.updateEmployee(employeeDO);
 
@@ -89,6 +96,22 @@ public class EmployeeService {
 
     private long getEmployeeCount(String name, String phone, String types) {
         return employeeDao.getEmployeeCount(name, phone, types);
+    }
+
+    private List<EmployeeDO> getEmployeeByName(String name) {
+        return employeeDao.getEmployeeByName(name);
+    }
+
+    public String getEmployeeIdJoinByName(String name) {
+        if (StringUtils.isBlank(name)) {
+            return null;
+        }
+        Collection<Integer> idList = Collections2.transform(getEmployeeByName(name), input -> input.getId());
+        if (CollectionUtils.isEmpty(idList)) {
+            return null;
+        }
+
+        return Joiner.on(",").join(idList);
     }
 
     public boolean addEmployeePosition(int employeeId, int position) {

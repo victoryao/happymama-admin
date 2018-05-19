@@ -36,6 +36,7 @@ public class OrderController {
 
     @RequestMapping(value = "/admin/order/list.do", method = RequestMethod.GET)
     public String orderList(@RequestParam(required = false, defaultValue = "0") int eId,
+                            @RequestParam(required = false, defaultValue = "") String name,
                             @RequestParam(required = false, defaultValue = "") String startDate,
                             @RequestParam(required = false, defaultValue = "") String endDate,
                             @RequestParam(required = false, defaultValue = "10") int limit,
@@ -49,7 +50,8 @@ public class OrderController {
         PageView<OrderDO> pageView = new PageView<>(limit, page);
         startDate = StringUtils.isBlank(startDate) ? null : startDate;
         endDate = StringUtils.isBlank(endDate) ? null : endDate;
-        QueryResult<OrderDO> qr = orderService.getOrders(eId, startDate, endDate, pageView.getFirstResult(), pageView.getMaxresult());
+        name = StringUtils.isBlank(name) ? null : name;
+        QueryResult<OrderDO> qr = orderService.getOrders(eId, name, startDate, endDate, pageView.getFirstResult(), pageView.getMaxresult());
         EmployeeDO employeeDO = employeeService.getEmployeeById(eId);
         pageView.setQueryResult(qr);
         modelMap.addAttribute("pageView", pageView);
@@ -58,6 +60,9 @@ public class OrderController {
             modelMap.addAttribute("employeeName", employeeDO.getName());
             modelMap.addAttribute("employeePhone", employeeDO.getPhone());
         }
+        modelMap.addAttribute("name", name);
+        modelMap.addAttribute("startDate", startDate);
+        modelMap.addAttribute("endDate", endDate);
         return "/order/list";
     }
 
@@ -71,8 +76,11 @@ public class OrderController {
             @RequestParam String endDate,
             @RequestParam float price,
             @RequestParam(required = false, defaultValue = "") String memo,
+            @RequestParam(required = false, defaultValue = "0") float recommendPrice,
+            @RequestParam(required = false, defaultValue = "") String recommendName,
+            @RequestParam(required = false, defaultValue = "") String recommendPhone,
             ModelMap modelMap) throws ParseException, IOException {
-        if (orderService.addOrder(employeeId, name, phone, address, startDate, endDate, price, memo)) {
+        if (orderService.addOrder(employeeId, name, phone, address, startDate, endDate, price, memo, price - recommendPrice, recommendPrice, recommendName, recommendPhone)) {
             modelMap.addAttribute("message", "增加成功");
         } else {
             modelMap.addAttribute("message", "此时间段不可预约");

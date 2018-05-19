@@ -12,21 +12,27 @@ public interface OrderDao {
 
     @Select({"<script>", "select * from `order` where 1=1",
             "<if test='employeeId != 0'> and employee_id = #{employeeId}</if>",
-            "<if test='startDate != null'> and (#{startDate} between start_date and end_date</if>",
-            "<if test='endDate != null'> or #{endDate} between start_date and end_date) </if>",
-            "<if test='endDate = null'> ) </if>",
+            "<if test='idList != null'> and employee_id in (#{idList}) </if>",
+            "<if test='startDate != null'> and start_date &gt;=  #{startDate}</if>",
+            "<if test='endDate != null'>  and end_date &lt;= #{endDate}</if>",
+//            "<if test='startDate != null'> and (#{startDate} between start_date and end_date</if>",
+//            "<if test='startDate != null and endDate == null'> ) </if>",
+//            "<if test='endDate != null'> or #{endDate} between start_date and end_date) </if>",
             "  order by start_date desc limit #{offset},#{limit}", "</script>"})
-    public List<OrderDO> getOrders(@Param("employeeId") int employeeId, @Param("startDate") String startDate, @Param("endDate") String endDate, @Param("offset") int offset, @Param("limit") int limit);
+    public List<OrderDO> getOrders(@Param("employeeId") int employeeId, @Param("startDate") String startDate,
+                                   @Param("endDate") String endDate, @Param("idList") String idList,
+                                   @Param("offset") int offset, @Param("limit") int limit);
 
     @Select({"<script>", "select count(1) from `order` where 1=1",
             "<if test='employeeId != 0'> and employee_id =  #{employeeId}</if>",
+            "<if test='idList != null'> and employee_id in (#{idList}) </if>",
             "<if test='startDate != null'> and start_date &gt;=  #{startDate}</if>",
             "<if test='endDate != null'>  and end_date &lt;= #{endDate}</if>",
             "</script>"})
-    public long getOrderCount(@Param("employeeId") int employeeId, @Param("startDate") String startDate, @Param("endDate") String endDate);
+    public long getOrderCount(@Param("employeeId") int employeeId, @Param("idList") String idList, @Param("startDate") String startDate, @Param("endDate") String endDate);
 
-    @Insert("insert into `order`(`employee_id`,`customer_id`,`price`, `start_date` ,`end_date`,`memo`,`created`,`updated`) " +
-            "values(#{employeeId}, #{customerId}, #{price}, #{startDate}, #{endDate},#{memo}, now(), now())")
+    @Insert("insert into `order`(`employee_id`,`customer_id`,`price`, `real_price`, `recommend_price` , `start_date` ,`end_date`,`memo`,`created`,`updated`) " +
+            "values(#{employeeId}, #{customerId}, #{price}, #{realPrice}, #{recommendPrice}, #{startDate}, #{endDate}, #{memo}, now(), now())")
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     boolean addOrder(OrderDO orderDO);
 

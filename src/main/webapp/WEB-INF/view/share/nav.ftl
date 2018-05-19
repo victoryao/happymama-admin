@@ -42,6 +42,21 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="dropdown show-on-hover">
+                <a href="javascript:;" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
+                    <span>数据统计</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="${base}/home.do">
+                            <span>数据统计</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </nav>
 </aside>

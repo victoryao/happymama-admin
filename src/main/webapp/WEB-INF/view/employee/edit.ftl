@@ -5,8 +5,10 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。" />
+    <meta name="aplus-xplug" content="NONE">
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政" />
+    <meta name="baidu-site-verification" content="71R86N1GBt" />
 
     <title>快乐妈咪管理后台</title>
     <link rel="stylesheet" href="${base}/vendor/bootstrap-select/bootstrap-select.css">
@@ -136,6 +138,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label class="col-sm-2 control-label">入行日期</label>
+                                                        <div class="col-sm-3">
+                                                            <div class="input-group mg-b-md input-append date datepicker"
+                                                                 data-date="${employeeDO.startDate?string('yyyy-MM-dd')}" data-date-format="yyyy-mm-dd">
+                                                                <input type="text" name="startDate" class="form-control"
+                                                                       title="入行日期"
+                                                                       value="${employeeDO.startDate?string('yyyy-MM-dd')}">
+                                                                <span class="input-group-btn">
+                                                                <button class="btn btn-white add-on" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-sm-2 control-label">身份证</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="IDCard"
@@ -174,18 +192,13 @@
                                                         <div class="col-sm-10">
                                                             <div class="checkbox">
                                                                 <label><input type="checkbox" name="types"
-                                                                              <#if (employeeDO.types?contains("0"))!>checked=""  </#if>
-                                                                              value="0">学员</label>
-                                                            </div>
-                                                            <div class="checkbox">
-                                                                <label><input type="checkbox" name="types"
                                                                               <#if (employeeDO.types?contains("1"))!>checked=""  </#if>
                                                                               value="1">月嫂</label>
                                                             </div>
                                                             <div class="checkbox">
                                                                 <label><input type="checkbox" name="types"
-                                                                              <#if (employeeDO.types?contains("2"))!>checked=""  </#if>
-                                                                              value="2">讲师</label>
+                                                                              <#if (employeeDO.types?contains("3"))!>checked=""  </#if>
+                                                                              value="3">育儿嫂</label>
                                                             </div>
                                                         </div>
                                                     </div>

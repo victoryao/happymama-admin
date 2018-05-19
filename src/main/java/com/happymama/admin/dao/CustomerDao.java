@@ -16,6 +16,9 @@ public interface CustomerDao {
     @Select("select * from `customer` where id = #{customerId}")
     CustomerDO getCustomerById(@Param("customerId") int customerId);
 
+    @Select("select * from `customer` where phone = #{phone}")
+    CustomerDO getCustomerByPhone(@Param("phone") String phone);
+
     @Update("update `customer` set `name` = #{name}, phone = #{phone}, address = #{address}, `updated` = now() where id = #{id}")
     void updateCustomer(CustomerDO customerDO);
 }

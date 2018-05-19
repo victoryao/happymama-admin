@@ -39,6 +39,7 @@ public class EmployeeController {
             @RequestParam String gender,
             @RequestParam String phone,
             @RequestParam String birthday,
+            @RequestParam String startDate,
             @RequestParam String IDCard,
             @RequestParam String hometown,
             @RequestParam MultipartFile photo,
@@ -48,7 +49,7 @@ public class EmployeeController {
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.addEmployee(name, gender, path, phone, birthday, IDCard, hometown, introduce, types);
+        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types);
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }
@@ -60,6 +61,7 @@ public class EmployeeController {
             @RequestParam String gender,
             @RequestParam String phone,
             @RequestParam String birthday,
+            @RequestParam String startDate,
             @RequestParam String IDCard,
             @RequestParam String hometown,
             @RequestParam(required = false) String introduce,
@@ -69,7 +71,7 @@ public class EmployeeController {
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.updateEmployee(id, name, gender, path, phone, birthday, IDCard, hometown, introduce, types);
+        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types);
         modelMap.addAttribute("message", "修改成功");
         return "/share/result";
     }

@@ -5,8 +5,11 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="description"
+          content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。"/>
+    <meta name="aplus-xplug" content="NONE">
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政"/>
+    <meta name="baidu-site-verification" content="71R86N1GBt"/>
 
     <title>快乐妈咪管理后台</title>
     <link rel="stylesheet" href="${base}/vendor/bootstrap-select/bootstrap-select.css">
@@ -27,6 +30,8 @@
     <link rel="stylesheet" href="${base}/css/skins/palette.1.css" id="skin">
     <link rel="stylesheet" href="${base}/css/fonts/style.1.css" id="font">
     <link rel="stylesheet" href="${base}/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${base}/css/diyUpload.css">
+    <link rel="stylesheet" type="text/css" href="${base}/css/webuploader.css">
 
 
     <!--[if lt IE 9]>
@@ -35,6 +40,7 @@
     <![endif]-->
 
     <script src="${base}/vendor/modernizr.js"></script>
+
 </head>
 
 <body>
@@ -77,9 +83,11 @@
                                             <header class="panel-heading">信息登记</header>
                                             <div class="panel-body">
                                                 <form class="form-horizontal bordered-group parsley-form" role="form"
-                                                      action="${base}/admin/employee/add.do" method="post" enctype="multipart/form-data"
+                                                      action="${base}/admin/employee/add.do" method="post"
+                                                      enctype="multipart/form-data"
                                                       accept-charset="utf-8"
                                                       data-parsley-validate>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">姓名</label>
                                                         <div class="col-sm-10">
@@ -90,7 +98,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">性别</label>
-                                                        <div class="col-sm-10">
+                                                        <div class="col-sm-2">
                                                             <div class="radio">
                                                                 <label>
                                                                     <input type="radio" name="gender" value="0"
@@ -129,6 +137,22 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label class="col-sm-2 control-label">入行日期</label>
+                                                        <div class="col-sm-3">
+                                                            <div class="input-group mg-b-md input-append date datepicker"
+                                                                 data-date="2000-01-01" data-date-format="yyyy-mm-dd">
+                                                                <input type="text" name="startDate" class="form-control"
+                                                                       title="入行日期"
+                                                                       value="2000-01-01">
+                                                                <span class="input-group-btn">
+                                                                <button class="btn btn-white add-on" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-sm-2 control-label">身份证</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="IDCard"
@@ -147,12 +171,30 @@
                                                                    data-parsley-trigger="change">
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">个人图片</label>
+                                                        <label class="col-sm-2 control-label">类型</label>
+                                                        <div class="col-sm-10">
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="types" checked=""
+                                                                              value="1">月嫂</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="types" checked=""
+                                                                              value="3">育儿嫂</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">个人头像</label>
                                                         <div class="col-sm-10">
                                                             <input type="file" name="photo">
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">个人简介</label>
                                                         <div class="col-sm-10">
@@ -160,25 +202,10 @@
                                                                       title="个人简介"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">职位</label>
-                                                        <div class="col-sm-10">
-                                                            <div class="checkbox">
-                                                                <label><input type="checkbox" checked="" name="types"
-                                                                              value="0">学员</label>
-                                                            </div>
-                                                            <div class="checkbox">
-                                                                <label><input type="checkbox" name="types"
-                                                                              value="1">月嫂</label>
-                                                            </div>
-                                                            <div class="checkbox">
-                                                                <label><input type="checkbox" name="types"
-                                                                              value="2">讲师</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div align="center">
-                                                        <button type="submit" class="btn btn btn-primary btn-parsley">
+                                                        <button type="submit"
+                                                                class="btn btn btn-primary btn-parsley">
                                                             提交
                                                         </button>
                                                     </div>
@@ -229,6 +256,9 @@
 
 <script src="${base}/js/panel.js"></script>
 <script src="${base}/js/forms.js"></script>
+<script type="text/javascript" src="${base}/js/diyUpload.js"></script>
+<script type="text/javascript" src="${base}/js/webuploader.html5only.min.js"></script>
+
 </body>
 
 </html>

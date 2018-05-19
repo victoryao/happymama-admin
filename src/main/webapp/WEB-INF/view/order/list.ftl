@@ -5,8 +5,10 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="Flat, Clean, Responsive, admin template built with bootstrap 3">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。" />
+    <meta name="aplus-xplug" content="NONE">
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政" />
+    <meta name="baidu-site-verification" content="71R86N1GBt" />
 
     <title>快乐妈咪管理后台</title>
 
@@ -98,7 +100,7 @@
                             </div>
                         </section>
 
-            </#if>
+                    </#if>
 
                         <section class="panel">
                             <header class="panel-heading">查询</header>
@@ -106,22 +108,32 @@
                                 <form class="form-inline" role="form" action="${base}/admin/order/list.do">
                                     <input type="hidden" name="page" id="page"/>
                                     <input type="hidden" name="eId" id="eId" value="${eId}"/>
+
+                                    <#if (eId  =="0" )!>
+                                        <div class="form-group">
+                                            员工姓名:<label class="sr-only">员工姓名</label>
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="员工姓名" value="${name}">
+                                        </div>
+                                    </#if>
+
                                     开始时间:
                                     <div class="input-group mg-b-md input-append date datepicker"
                                          data-date-format="yyyy-mm-dd">
                                         <input type="text" name="startDate" class="form-control"
-                                               title="开始时间">
+                                               title="开始时间" value="${startDate}">
                                         <span class="input-group-btn">
                                             <button class="btn btn-white add-on" type="button">
                                                 <i class="fa fa-calendar"></i>
                                             </button>
                                         </span>
                                     </div>
+
                                     结束时间:
                                     <div class="input-group mg-b-md input-append date datepicker"
                                          data-date-format="yyyy-mm-dd">
                                         <input type="text" name="endDate" class="form-control"
-                                               title="结束时间">
+                                               title="结束时间" value="${endDate}">
                                         <span class="input-group-btn">
                                             <button class="btn btn-white add-on" type="button">
                                                 <i class="fa fa-calendar"></i>
@@ -143,11 +155,12 @@
                             <header class="panel-heading">订单列表</header>
                             <div class="panel-body no-padding">
                                 <div class="table-responsive">
-                                    <form action="${base}/admin/employee/list.do">
+                                    <form action="${base}/admin/order/list.do">
                                         <table class="table table-striped responsive" data-sortable>
                                             <thead>
                                             <tr>
                                                 <th>编号</th>
+                                                <th>员工姓名</th>
                                                 <th>顾客姓名</th>
                                                 <th>顾客电话</th>
                                                 <th>开始时间</th>
@@ -160,6 +173,7 @@
                                             <#list pageView.records as order>
                                             <tr>
                                                 <td>${order.id}</td>
+                                                <td>${order.employeeName}</td>
                                                 <td>${order.customerName}</td>
                                                 <td>${order.customerPhone}</td>
                                                 <td>${order.startDate?string('yyyy-MM-dd')}</td>
