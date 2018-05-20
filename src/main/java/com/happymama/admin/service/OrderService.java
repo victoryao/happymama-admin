@@ -67,7 +67,7 @@ public class OrderService {
 
     @Transactional
     public boolean addOrder(int eId, String name, String phone, String address, String startDate, String endDate,
-                            float price, String memo, float realPrice, float recommendPrice, String recommendName, String recommendPhone) throws ParseException {
+                            float price, String memo, int orderType, float realPrice, float recommendPrice, String recommendName, String recommendPhone) throws ParseException {
         int recommendCustomerId = 0;
         Date start = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
         Date end = DateUtils.parseDate(endDate, new String[]{"yyyy-MM-dd"});
@@ -75,16 +75,18 @@ public class OrderService {
             return false;
         }
 
+        //客户逻辑处理
         CustomerDO customerDO = CustomerDO.builder().name(name).phone(phone).address(address).build();
         customerService.addCustomer(customerDO);
 
+        //介绍人逻辑处理
         if (StringUtils.isNotBlank(recommendName) && StringUtils.isNotBlank(recommendPhone)) {
             CustomerDO recommendCustomer = CustomerDO.builder().name(recommendName).phone(recommendPhone).address(StringUtils.EMPTY).build();
             customerService.addCustomer(recommendCustomer);
             recommendCustomerId = recommendCustomer.getId();
         }
 
-        OrderDO orderDO = OrderDO.builder().employeeId(eId).customerId(customerDO.getId()).price(price)
+        OrderDO orderDO = OrderDO.builder().employeeId(eId).customerId(customerDO.getId()).price(price).type(orderType).status(1)
                 .startDate(start).endDate(end).memo(memo).realPrice(realPrice).recommendPrice(recommendPrice).build();
         orderDao.addOrder(orderDO);
 

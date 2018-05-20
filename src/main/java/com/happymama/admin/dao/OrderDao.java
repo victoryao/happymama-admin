@@ -31,8 +31,8 @@ public interface OrderDao {
             "</script>"})
     public long getOrderCount(@Param("employeeId") int employeeId, @Param("idList") String idList, @Param("startDate") String startDate, @Param("endDate") String endDate);
 
-    @Insert("insert into `order`(`employee_id`,`customer_id`,`price`, `real_price`, `recommend_price` , `start_date` ,`end_date`,`memo`,`created`,`updated`) " +
-            "values(#{employeeId}, #{customerId}, #{price}, #{realPrice}, #{recommendPrice}, #{startDate}, #{endDate}, #{memo}, now(), now())")
+    @Insert("insert into `order`(`employee_id`,`customer_id`,`price`, `real_price`, `recommend_price` , `type`, `status`,`start_date` ,`end_date`,`memo`,`created`,`updated`) " +
+            "values(#{employeeId}, #{customerId}, #{price}, #{realPrice}, #{recommendPrice}, #{type}, #{status}, #{startDate}, #{endDate}, #{memo}, now(), now())")
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     boolean addOrder(OrderDO orderDO);
 

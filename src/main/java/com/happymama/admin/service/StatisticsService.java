@@ -14,11 +14,11 @@ public class StatisticsService {
     @Resource
     private StatisticsDao statisticsDao;
 
-    public int getCourseInput(){
-        return statisticsDao.getCourseInput();
+    public int getCourseInput() {
+        return statisticsDao.getCourseInput() == null ? 0 : statisticsDao.getCourseInput();
     }
 
-    public int getOrderInput(){
-        return statisticsDao.getOrderInput();
+    public int getOrderInput() {
+        return statisticsDao.getOrderInput() == null ? 0 : statisticsDao.getOrderInput();
     }
 }

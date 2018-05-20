@@ -46,12 +46,12 @@ public class EmployeeService {
 
 
     public boolean addEmployee(String name, String gender, String path, String phone, String birthday, String startDate, String IDCard,
-                               String hometown, String introduce, String types) throws ParseException {
+                               String hometown, String introduce, String types, float salary) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
         Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
-        EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path)
+        EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path).salary(salary)
                 .startDate(startJobDate).phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         boolean result = employeeDao.addEmployee(employeeDO);

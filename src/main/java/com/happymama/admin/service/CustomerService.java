@@ -17,7 +17,6 @@ public class CustomerService {
     public CustomerDO addCustomer(CustomerDO customerDO) {
         CustomerDO cDo = customerDao.getCustomerByPhone(customerDO.getPhone());
         if (cDo != null) {
-
             return cDo;
         }
         customerDao.addCustomer(customerDO);

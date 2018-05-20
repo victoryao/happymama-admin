@@ -4,6 +4,7 @@ import com.happymama.admin.constant.Constant;
 import com.happymama.admin.enums.PositionEnum;
 import com.happymama.admin.service.AdminService;
 import com.happymama.admin.service.EmployeeService;
+import com.happymama.admin.service.StatisticsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ public class LoginController {
     private AdminService adminService;
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private StatisticsService statisticsService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam String name,
@@ -32,9 +35,10 @@ public class LoginController {
         if (adminService.login(name, password)) {
             httpSession.setAttribute(Constant.sessionCheckKey, name);
             modelMap.addAttribute("loginName", name);
-            modelMap.addAttribute("studentCount", employeeService.getCountByPosition(PositionEnum.STUDENT.getVal()));
             modelMap.addAttribute("babySitterCount", employeeService.getCountByPosition(PositionEnum.BABYSITTER.getVal()));
-            modelMap.addAttribute("teacherCount", employeeService.getCountByPosition(PositionEnum.TEACHER.getVal()));
+            modelMap.addAttribute("yuerCount", employeeService.getCountByPosition(PositionEnum.YUERSAO.getVal()));
+            modelMap.addAttribute("courseInput", statisticsService.getCourseInput());
+            modelMap.addAttribute("orderInput", statisticsService.getOrderInput());
             return "/home/home";
         }
         return "signin";

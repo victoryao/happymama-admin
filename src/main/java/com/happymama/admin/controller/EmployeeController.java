@@ -45,11 +45,12 @@ public class EmployeeController {
             @RequestParam MultipartFile photo,
             @RequestParam(required = false) String introduce,
             @RequestParam String types,
+            @RequestParam(required = false, defaultValue = "0") float salary,
             ModelMap modelMap) throws ParseException, IOException
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types);
+        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary);
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }

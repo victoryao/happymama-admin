@@ -69,27 +69,16 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <section class="panel">
                             <div class="panel-body">
-                                <div class="circle-icon bg-success">
-                                    <i class="fa fa-microphone"></i>
-                                </div>
-                                <div>
-                                    <h3 class="no-margin">${studentCount}</h3> 培训学员
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <section class="panel">
-                            <div class="panel-body">
                                 <div class="circle-icon bg-danger">
                                     <i class="fa fa-anchor"></i>
                                 </div>
                                 <div>
-                                    <h3 class="no-margin">${babySitterCount}</h3> 讲师数
+                                    <h3 class="no-margin">${babySitterCount}</h3> 月嫂数
                                 </div>
                             </div>
                         </section>
                     </div>
+
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <section class="panel">
                             <div class="panel-body">
@@ -97,11 +86,12 @@
                                     <i class="fa fa-magnet"></i>
                                 </div>
                                 <div>
-                                    <h3 class="no-margin">${teacherCount}</h3> 月嫂数
+                                    <h3 class="no-margin">${yuerCount}</h3> 育儿嫂数
                                 </div>
                             </div>
                         </section>
                     </div>
+
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <section class="panel">
                             <div class="panel-body">

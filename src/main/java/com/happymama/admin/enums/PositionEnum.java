@@ -7,7 +7,8 @@ public enum PositionEnum {
 
     STUDENT(0), //学员
     BABYSITTER(1), //月嫂
-    TEACHER(2); //讲师
+    TEACHER(2), //讲师
+    YUERSAO(3); //育儿嫂
 
     private int val;
 

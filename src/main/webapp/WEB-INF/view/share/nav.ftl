@@ -18,12 +18,12 @@
             <li class="dropdown show-on-hover">
                 <a href="javascript:;" data-toggle="dropdown">
                     <i class="fa fa-tasks"></i>
-                    <span>员工查询</span>
+                    <span>员工管理</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="${base}/admin/employee/list.do">
-                            <span>员工查询</span>
+                            <span>员工管理</span>
                         </a>
                     </li>
                 </ul>

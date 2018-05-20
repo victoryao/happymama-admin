@@ -25,6 +25,8 @@ public class OrderDO {
     private float recommendPrice;
     private Date startDate;
     private Date endDate;
+    private int type;
+    private int status;
     private String memo;
     private Date created;
     private Date updated;

@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface EmployeeDao {
 
-    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `start_date`,`idcard`,`hometown`,`introduce`,`created`,`updated`) " +
-            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, now(), now())")
+    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `start_date`,`idcard`,`hometown`,`introduce`, `salary`, `created`, `updated`) " +
+            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, #{salary}, now(), now())")
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     public boolean addEmployee(EmployeeDO employeeDO);
 

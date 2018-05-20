@@ -141,7 +141,7 @@
                                                     <#if (employee.photo == "")><img src="${base}/img/default.jpg"
                                                                                      height="100" width="100"/> </#if>
                                                     <#if (employee.photo != "")><img
-                                                            src="${base}/imgs/${employee.photo}" height="100"
+                                                            src="/imgs/${employee.photo}" height="100"
                                                             width="100"/> </#if>
                                                 </td>
                                                 <td>${employee.name}</td>

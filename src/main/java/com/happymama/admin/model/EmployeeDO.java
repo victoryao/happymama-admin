@@ -27,6 +27,7 @@ public class EmployeeDO {
     private String hometown;
     private String introduce;
     private String types;
+    private float salary;
     private Date created;
     private Date updated;
 }

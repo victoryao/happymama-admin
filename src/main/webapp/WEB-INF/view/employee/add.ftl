@@ -111,6 +111,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">手机</label>
                                                         <div class="col-sm-10">
@@ -120,6 +121,7 @@
                                                                    data-parsley-trigger="change">
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">出生日期</label>
                                                         <div class="col-sm-3">
@@ -182,7 +184,7 @@
                                                             </div>
 
                                                             <div class="checkbox">
-                                                                <label><input type="checkbox" name="types" checked=""
+                                                                <label><input type="checkbox" name="types"
                                                                               value="3">育儿嫂</label>
                                                             </div>
                                                         </div>
@@ -192,6 +194,16 @@
                                                         <label class="col-sm-2 control-label">个人头像</label>
                                                         <div class="col-sm-10">
                                                             <input type="file" name="photo">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">期望工资</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="salary" class="form-control"
+                                                                   title="期望工资" data-parsley-required="true"
+                                                                   data-parsley-type="number" value="0"
+                                                                   data-parsley-trigger="change">
                                                         </div>
                                                     </div>
 

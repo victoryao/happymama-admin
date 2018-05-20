@@ -117,11 +117,11 @@
                                         </div>
                                     </#if>
 
-                                    开始时间:
+                                    订单开始时间:
                                     <div class="input-group mg-b-md input-append date datepicker"
                                          data-date-format="yyyy-mm-dd">
                                         <input type="text" name="startDate" class="form-control"
-                                               title="开始时间" value="${startDate}">
+                                               title="订单开始时间" value="${startDate}">
                                         <span class="input-group-btn">
                                             <button class="btn btn-white add-on" type="button">
                                                 <i class="fa fa-calendar"></i>
@@ -129,11 +129,11 @@
                                         </span>
                                     </div>
 
-                                    结束时间:
+                                    订单结束时间:
                                     <div class="input-group mg-b-md input-append date datepicker"
                                          data-date-format="yyyy-mm-dd">
                                         <input type="text" name="endDate" class="form-control"
-                                               title="结束时间" value="${endDate}">
+                                               title="订单结束时间" value="${endDate}">
                                         <span class="input-group-btn">
                                             <button class="btn btn-white add-on" type="button">
                                                 <i class="fa fa-calendar"></i>

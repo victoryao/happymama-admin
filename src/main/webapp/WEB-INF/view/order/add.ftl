@@ -66,9 +66,27 @@
                                             <div class="panel-body">
                                                 <form class="form-horizontal bordered-group parsley-form" role="form"
                                                       action="${base}/admin/order/add.do" method="post"
+                                                      enctype="multipart/form-data"
                                                       accept-charset="utf-8"
                                                       data-parsley-validate>
                                                     <input type="hidden" name="employeeId" id="employeeId" value="${employeeId}"/>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">订单类型</label>
+                                                        <div class="col-sm-2">
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="orderType" value="0"
+                                                                           checked="">月嫂</label>
+                                                            </div>
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="orderType"
+                                                                           value="1">育儿嫂</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">客户姓名</label>
                                                         <div class="col-sm-10">
@@ -98,10 +116,10 @@
                                                         <label class="col-sm-2 control-label">开始时间</label>
                                                         <div class="col-sm-3">
                                                             <div class="input-group mg-b-md input-append date datepicker"
-                                                                 data-date="2018-01-01" data-date-format="yyyy-mm-dd">
+                                                                 data-date="2018-06-01" data-date-format="yyyy-mm-dd">
                                                                 <input type="text" name="startDate" class="form-control"
                                                                        title="开始时间"
-                                                                       value="2018-01-01">
+                                                                       value="2018-06-01">
                                                                 <span class="input-group-btn">
                                                                 <button class="btn btn-white add-on" type="button">
                                                                 <i class="fa fa-calendar"></i>
@@ -114,10 +132,10 @@
                                                         <label class="col-sm-2 control-label">结束时间</label>
                                                         <div class="col-sm-3">
                                                             <div class="input-group mg-b-md input-append date datepicker"
-                                                                 data-date="2018-01-01" data-date-format="yyyy-mm-dd">
+                                                                 data-date="2018-07-01" data-date-format="yyyy-mm-dd">
                                                                 <input type="text" name="endDate" class="form-control"
                                                                        title="结束时间"
-                                                                       value="2018-01-01">
+                                                                       value="2018-07-01">
                                                                 <span class="input-group-btn">
                                                                 <button class="btn btn-white add-on" type="button">
                                                                 <i class="fa fa-calendar"></i>
@@ -126,11 +144,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label">价格</label>
+                                                        <label class="col-sm-2 control-label">订单金额</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" name="price" class="form-control"
-                                                                   title="价格" data-parsley-required="true"
+                                                                   title="订单金额" data-parsley-required="true"
+                                                                   value="0"
+                                                                   data-parsley-type="number"
+                                                                   data-parsley-trigger="change">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">公司收入</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="realPrice" class="form-control"
+                                                                   title="公司收入" data-parsley-required="true"
+                                                                   value="0"
                                                                    data-parsley-type="number"
                                                                    data-parsley-trigger="change">
                                                         </div>
@@ -160,6 +191,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="text" name="recommendPrice" class="form-control"
                                                                    title="价格"
+                                                                   value="0"
                                                                    data-parsley-type="number"
                                                                    data-parsley-trigger="change">
                                                         </div>
@@ -168,8 +200,8 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">备注</label>
                                                         <div class="col-sm-10">
-                                                            <textarea class="form-control" rows="5" name="introduce"
-                                                                      title="个人简介"></textarea>
+                                                            <textarea class="form-control" rows="5" name="memo"
+                                                                      title="备注"></textarea>
                                                         </div>
                                                     </div>
 

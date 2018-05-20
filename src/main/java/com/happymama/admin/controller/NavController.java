@@ -33,9 +33,8 @@ public class NavController {
 
     @RequestMapping("/home")
     public String toHomePage(ModelMap modelMap) {
-        modelMap.addAttribute("studentCount", employeeService.getCountByPosition(PositionEnum.STUDENT.getVal()));
         modelMap.addAttribute("babySitterCount", employeeService.getCountByPosition(PositionEnum.BABYSITTER.getVal()));
-        modelMap.addAttribute("teacherCount", employeeService.getCountByPosition(PositionEnum.TEACHER.getVal()));
+        modelMap.addAttribute("yuerCount", employeeService.getCountByPosition(PositionEnum.YUERSAO.getVal()));
         modelMap.addAttribute("courseInput", statisticsService.getCourseInput());
         modelMap.addAttribute("orderInput", statisticsService.getOrderInput());
         return "/home/home";
