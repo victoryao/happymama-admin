@@ -12,6 +12,7 @@ public interface OrderDao {
 
     @Select({"<script>", "select * from `order` where 1=1",
             "<if test='employeeId != 0'> and employee_id = #{employeeId}</if>",
+            "<if test='status != -1'> and status = #{status}</if>",
             "<if test='idList != null'> and employee_id in (#{idList}) </if>",
             "<if test='startDate != null'> and start_date &gt;=  #{startDate}</if>",
             "<if test='endDate != null'>  and end_date &lt;= #{endDate}</if>",
@@ -21,15 +22,18 @@ public interface OrderDao {
             "  order by start_date desc limit #{offset},#{limit}", "</script>"})
     public List<OrderDO> getOrders(@Param("employeeId") int employeeId, @Param("startDate") String startDate,
                                    @Param("endDate") String endDate, @Param("idList") String idList,
+                                   @Param("status") int status,
                                    @Param("offset") int offset, @Param("limit") int limit);
 
     @Select({"<script>", "select count(1) from `order` where 1=1",
             "<if test='employeeId != 0'> and employee_id =  #{employeeId}</if>",
+            "<if test='status != -1'> and status = #{status}</if>",
             "<if test='idList != null'> and employee_id in (#{idList}) </if>",
             "<if test='startDate != null'> and start_date &gt;=  #{startDate}</if>",
             "<if test='endDate != null'>  and end_date &lt;= #{endDate}</if>",
             "</script>"})
-    public long getOrderCount(@Param("employeeId") int employeeId, @Param("idList") String idList, @Param("startDate") String startDate, @Param("endDate") String endDate);
+    public long getOrderCount(@Param("employeeId") int employeeId, @Param("idList") String idList,
+                              @Param("startDate") String startDate, @Param("endDate") String endDate, @Param("status") int status);
 
     @Insert("insert into `order`(`employee_id`,`customer_id`,`price`, `real_price`, `recommend_price` , `type`, `status`,`start_date` ,`end_date`,`memo`,`created`,`updated`) " +
             "values(#{employeeId}, #{customerId}, #{price}, #{realPrice}, #{recommendPrice}, #{type}, #{status}, #{startDate}, #{endDate}, #{memo}, now(), now())")

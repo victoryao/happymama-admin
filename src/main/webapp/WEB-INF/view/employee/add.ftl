@@ -138,6 +138,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">入行日期</label>
                                                         <div class="col-sm-3">
@@ -204,6 +205,37 @@
                                                                    title="期望工资" data-parsley-required="true"
                                                                    data-parsley-type="number" value="0"
                                                                    data-parsley-trigger="change">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">个人技能</label>
+                                                        <div class="col-sm-10">
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill" checked=""
+                                                                              value="1">辅食添加</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              value="2">月子餐</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              value="3">手指操</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              value="4">早教</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              value="5">产后修复</label>
+                                                            </div>
                                                         </div>
                                                     </div>
 

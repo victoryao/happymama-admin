@@ -180,6 +180,43 @@
                                                             <input type="file" name="photo">
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">个人技能</label>
+                                                        <div class="col-sm-10">
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              <#if (employeeDO.skill?contains("1"))!>checked=""  </#if>
+                                                                              value="1">辅食添加</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              <#if (employeeDO.skill?contains("2"))!>checked=""  </#if>
+                                                                              value="2">月子餐</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              <#if (employeeDO.skill?contains("3"))!>checked=""  </#if>
+                                                                              value="3">手指操</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              <#if (employeeDO.skill?contains("4"))!>checked=""  </#if>
+                                                                              value="4">早教</label>
+                                                            </div>
+
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" name="skill"
+                                                                              <#if (employeeDO.skill?contains("5"))!>checked=""  </#if>
+                                                                              value="5">产后修复</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">个人简介</label>
                                                         <div class="col-sm-10">

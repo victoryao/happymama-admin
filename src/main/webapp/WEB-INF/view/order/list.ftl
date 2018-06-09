@@ -5,10 +5,11 @@
 <head>
     <base id="base" href="${base}">
     <meta charset="utf-8">
-    <meta name="description" content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。" />
+    <meta name="description"
+          content="北京快乐妈咪科技有限公司是由一群有爱心有激情的奶爸与月嫂创始建设，着力搭建一个孕妈和月嫂的深度交流平台。目前的核心服务包括培训、月嫂、育儿嫂、催乳师、产后护理、小儿推拿、月子餐等母婴服务的预定与咨询，用户可结合自身实际情况，分价格、分地域、分年限进行快速搜索，可以周为单位进行服务评价、付款，是专业且具有保障的孕妈社区。"/>
     <meta name="aplus-xplug" content="NONE">
-    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政" />
-    <meta name="baidu-site-verification" content="71R86N1GBt" />
+    <meta name="keyword" content="月嫂,培训,月嫂培训,育儿嫂,催乳师,小儿推拿师,产后恢复,月子膳食,营养师,快乐妈咪,推荐工作,高薪,家政"/>
+    <meta name="baidu-site-verification" content="71R86N1GBt"/>
 
     <title>快乐妈咪管理后台</title>
 
@@ -109,13 +110,13 @@
                                     <input type="hidden" name="page" id="page"/>
                                     <input type="hidden" name="eId" id="eId" value="${eId}"/>
 
-                                    <#if (eId  =="0" )!>
-                                        <div class="form-group">
-                                            员工姓名:<label class="sr-only">员工姓名</label>
-                                            <input type="text" name="name" class="form-control"
-                                                   placeholder="员工姓名" value="${name}">
-                                        </div>
-                                    </#if>
+                                <#if (eId  =="0" )!>
+                                    <div class="form-group">
+                                        员工姓名:<label class="sr-only">员工姓名</label>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="员工姓名" value="${name}">
+                                    </div>
+                                </#if>
 
                                     订单开始时间:
                                     <div class="input-group mg-b-md input-append date datepicker"
@@ -176,11 +177,15 @@
                                                 <td>${order.employeeName}</td>
                                                 <td>${order.customerName}</td>
                                                 <td>${order.customerPhone}</td>
-                                                <td>${order.startDate?string('yyyy-MM-dd')}</td>
-                                                <td>${order.endDate?string('yyyy-MM-dd')}</td>
+                                                <td>
+                                                    <#if order.startDate??> ${order.startDate?string('yyyy-MM-dd')}</#if>
+                                                </td>
+                                                <td>
+                                                    <#if order.endDate??> ${order.endDate?string('yyyy-MM-dd')}</#if>
+                                                </td>
                                                 <td>${order.price}</td>
                                                 <td>
-                                                <a href="${base}/admin/to/${order.id}/update.do"
+                                                    <a href="${base}/admin/to/${order.id}/update.do"
                                                        class="btn btn-danger btn-sm">修改</a>
                                                     <a href="${base}/admin/${order.id}/order/delete.do"
                                                        class="btn btn-danger btn-sm">删除</a>

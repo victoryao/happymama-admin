@@ -37,6 +37,7 @@ public class OrderController {
     @RequestMapping(value = "/admin/order/list.do", method = RequestMethod.GET)
     public String orderList(@RequestParam(required = false, defaultValue = "0") int eId,
                             @RequestParam(required = false, defaultValue = "") String name,
+                            @RequestParam(required = false, defaultValue = "-1") int status,
                             @RequestParam(required = false, defaultValue = "") String startDate,
                             @RequestParam(required = false, defaultValue = "") String endDate,
                             @RequestParam(required = false, defaultValue = "10") int limit,
@@ -51,7 +52,8 @@ public class OrderController {
         startDate = StringUtils.isBlank(startDate) ? null : startDate;
         endDate = StringUtils.isBlank(endDate) ? null : endDate;
         name = StringUtils.isBlank(name) ? null : name;
-        QueryResult<OrderDO> qr = orderService.getOrders(eId, name, startDate, endDate, pageView.getFirstResult(), pageView.getMaxresult());
+        QueryResult<OrderDO> qr = orderService.getOrders(eId, name, startDate, endDate, status,
+                pageView.getFirstResult(), pageView.getMaxresult());
         EmployeeDO employeeDO = employeeService.getEmployeeById(eId);
         pageView.setQueryResult(qr);
         modelMap.addAttribute("pageView", pageView);

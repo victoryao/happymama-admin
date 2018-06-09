@@ -38,10 +38,12 @@ public class OrderService {
         return orderDao.getOrderById(orderId);
     }
 
-    public QueryResult<OrderDO> getOrders(int employeeId, String name, String startDate, String endDate, int offset, int limit) {
+    public QueryResult<OrderDO> getOrders(int employeeId, String name, String startDate,
+                                          String endDate, int status, int offset, int limit) {
         String idList = employeeService.getEmployeeIdJoinByName(name);
         QueryResult<OrderDO> qr = new QueryResult<>();
-        List<OrderDO> list = orderDao.getOrders(employeeId, startDate, endDate, idList, offset, limit);
+        List<OrderDO> list = orderDao.getOrders(employeeId, startDate, endDate, idList, status, offset, limit);
+
         if (CollectionUtils.isNotEmpty(list)) {
             for (OrderDO orderDO : list) {
                 CustomerDO customerDO = customerService.getCustomerById(orderDO.getCustomerId());
@@ -55,14 +57,14 @@ public class OrderService {
                 }
             }
         }
-        long count = getOrderCount(employeeId, idList, startDate, endDate);
+        long count = getOrderCount(employeeId, idList, startDate, endDate, status);
         qr.setResultlist(list);
         qr.setTotalrecord(count);
         return qr;
     }
 
-    private long getOrderCount(int employeeId, String idList, String startDate, String endDate) {
-        return orderDao.getOrderCount(employeeId, idList, startDate, endDate);
+    private long getOrderCount(int employeeId, String idList, String startDate, String endDate, int status) {
+        return orderDao.getOrderCount(employeeId, idList, startDate, endDate, status);
     }
 
     @Transactional
@@ -77,12 +79,12 @@ public class OrderService {
 
         //客户逻辑处理
         CustomerDO customerDO = CustomerDO.builder().name(name).phone(phone).address(address).build();
-        customerService.addCustomer(customerDO);
+        customerDO = customerService.addCustomer(customerDO);
 
         //介绍人逻辑处理
         if (StringUtils.isNotBlank(recommendName) && StringUtils.isNotBlank(recommendPhone)) {
             CustomerDO recommendCustomer = CustomerDO.builder().name(recommendName).phone(recommendPhone).address(StringUtils.EMPTY).build();
-            customerService.addCustomer(recommendCustomer);
+            recommendCustomer = customerService.addCustomer(recommendCustomer);
             recommendCustomerId = recommendCustomer.getId();
         }
 

@@ -156,7 +156,7 @@
                                                 <#--<a href="${base}/admin/${employee.id}/delete.do"-->
                                                 <#--class="btn btn-danger btn-sm">删除</a>-->
                                                     <a href="${base}/admin/course/list.do?eId=${employee.id}"
-                                                       class="btn btn-danger btn-sm">学费</a>
+                                                       class="btn btn-danger btn-sm">技能/培训</a>
                                                     <a href="${base}/admin/order/list.do?eId=${employee.id}"
                                                        class="btn btn-danger btn-sm">订单</a>
                                                 </td>

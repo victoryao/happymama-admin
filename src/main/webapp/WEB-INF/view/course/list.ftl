@@ -86,45 +86,84 @@
                                     <form class="form-horizontal bordered-group parsley-form"
                                           role="form" action="${base}/admin/course/add.do" data-parsley-validate>
                                         <input type="hidden" name="employeeId" id="employeeId" value="${employeeId}"/>
-                                        <label class="col-sm-2 control-label">科目</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control selectpicker" data-style="btn-primary"
-                                                    name="courseId">
-                                            <#list courses as course>
-                                                <option value="${course.id}">${course.name}</option>
-                                            </#list>
-                                            </select>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">科目</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control selectpicker" data-style="btn-primary"
+                                                        name="courseId">
+                                                <#list courses as course>
+                                                    <option value="${course.id}">${course.name}</option>
+                                                </#list>
+                                                </select>
+                                            </div>
                                         </div>
 
-                                        <label class="col-sm-2 control-label">学费</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="price" class="form-control"
-                                                   title="学费" data-parsley-required="true"
-                                                   data-parsley-type="number"
-                                                   data-parsley-trigger="change">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">证书颁发时间</label>
+                                            <div class="col-sm-3">
+                                                <div class="input-group mg-b-md input-append date datepicker"
+                                                     data-date="${achieveDate}" data-date-format="yyyy-mm-dd">
+                                                    <input type="text" name="achieveDate" class="form-control"
+                                                           title="证书颁发时间"
+                                                           value="${achieveDate}">
+                                                    <span class="input-group-btn">
+                                                                <button class="btn btn-white add-on" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                                </button>
+                                                                </span>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <label class="col-sm-2 control-label">介绍人姓名</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="name" class="form-control"
-                                                   title="介绍人姓名"
-                                                   data-parsley-trigger="change">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">培训方式</label>
+                                            <div class="col-sm-2">
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="achieveType" value="0"
+                                                               checked="">我司培训</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="achieveType"
+                                                               value="1">他司培训</label>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <label class="col-sm-2 control-label">介绍人手机</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="phone" class="form-control"
-                                                   title="介绍人手机"
-                                                   data-parsley-type="number"
-                                                   data-parsley-trigger="change">
-                                        </div>
+                                        <div id="recommendDiv">
+                                            <label class="col-sm-2 control-label">学费</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="price" class="form-control"
+                                                       title="学费" data-parsley-required="true"
+                                                       data-parsley-type="number"
+                                                       value="0"
+                                                       data-parsley-trigger="change">
+                                            </div>
 
-                                        <label class="col-sm-2 control-label">介绍费用</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="recommendPrice" class="form-control"
-                                                   value="0" title="介绍费用"
-                                                   data-parsley-type="number"
-                                                   data-parsley-trigger="change">
+                                            <label class="col-sm-2 control-label">介绍人姓名</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="name" class="form-control"
+                                                       title="介绍人姓名"
+                                                       data-parsley-trigger="change">
+                                            </div>
+
+                                            <label class="col-sm-2 control-label">介绍人手机</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="phone" class="form-control"
+                                                       title="介绍人手机"
+                                                       data-parsley-type="number"
+                                                       data-parsley-trigger="change">
+                                            </div>
+
+                                            <label class="col-sm-2 control-label">介绍费用</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="recommendPrice" class="form-control"
+                                                       value="0" title="介绍费用"
+                                                       data-parsley-type="number"
+                                                       data-parsley-trigger="change">
+                                            </div>
                                         </div>
 
                                         <div align="center">
@@ -143,13 +182,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <section class="panel">
-                            <header class="panel-heading">培训列表</header>
+                            <header class="panel-heading">技能列表</header>
                             <div class="panel-body no-padding">
                                 <div class="table-responsive">
                                     <table class="table table-striped responsive" data-sortable>
                                         <thead>
                                         <tr>
-                                            <th>培训科目</th>
+                                            <th>技能科目</th>
+                                            <th>培训方式</th>
                                             <th>学费</th>
                                             <th>介绍人</th>
                                             <th>介绍人电话</th>
@@ -162,6 +202,10 @@
                                         <#list courseOrders as courseOrder>
                                         <tr>
                                             <td>${courseOrder.courseName}</td>
+                                            <td>
+                                                <#if (courseOrder.achieveType =="0")>我司培训 </#if>
+                                                <#if (courseOrder.achieveType =="1")>他司培训 </#if>
+                                            </td>
                                             <td>${courseOrder.price}</td>
                                             <td>${courseOrder.recommendName}</td>
                                             <td>${courseOrder.recommendPhone}</td>
@@ -222,9 +266,15 @@
 <script src="${base}/js/forms.js"></script>
 <script>
     $(document).ready(function () {
-    <#--$.post("${base}/admin/course/list.do", function (data) {-->
-    <#--alert(data);-->
-    <#--});-->
+        $('input:radio[name="achieveType"]').change(function () {
+            var a = $("input[name='achieveType']:checked").val();
+            if (a == 1) {
+                $("#recommendDiv").hide();
+            } else {
+                $("#recommendDiv").show();
+            }
+        });
+
     });
 </script>
 </body>

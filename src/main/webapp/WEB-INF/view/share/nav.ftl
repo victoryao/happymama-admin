@@ -40,6 +40,11 @@
                             <span>订单查询</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="${base}/admin/order/list.do?status=0">
+                            <span>网上订单</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

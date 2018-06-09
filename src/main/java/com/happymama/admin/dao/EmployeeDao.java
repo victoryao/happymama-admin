@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface EmployeeDao {
 
-    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `start_date`,`idcard`,`hometown`,`introduce`, `salary`, `created`, `updated`) " +
-            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, #{salary}, now(), now())")
+    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `skill`, `start_date`,`idcard`,`hometown`,`introduce`, `salary`, `created`, `updated`) " +
+            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday},  #{skill}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, #{salary}, now(), now())")
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     public boolean addEmployee(EmployeeDO employeeDO);
 
@@ -23,6 +23,7 @@ public interface EmployeeDao {
             "<if test='birthday != null'> , birthday = #{birthday}</if> ",
             "<if test='startDate != null'> , start_date = #{startDate}</if> ",
             "<if test='idcard != null'> , idcard = #{idcard}</if> ",
+            "<if test='skill != null'> , skill = #{skill}</if> ",
             "<if test='hometown != null'> , hometown = #{hometown}</if> ",
             "<if test='introduce != null'> , introduce = #{introduce}</if> ",
             " where id = #{id}", "</script>"})

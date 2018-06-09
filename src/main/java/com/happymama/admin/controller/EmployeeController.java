@@ -43,14 +43,15 @@ public class EmployeeController {
             @RequestParam String IDCard,
             @RequestParam String hometown,
             @RequestParam MultipartFile photo,
-            @RequestParam(required = false) String introduce,
+            @RequestParam(required = false, defaultValue = "") String introduce,
+            @RequestParam(required = false, defaultValue = "") String skill,
             @RequestParam String types,
             @RequestParam(required = false, defaultValue = "0") float salary,
             ModelMap modelMap) throws ParseException, IOException
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary);
+        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill);
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }
@@ -65,14 +66,15 @@ public class EmployeeController {
             @RequestParam String startDate,
             @RequestParam String IDCard,
             @RequestParam String hometown,
-            @RequestParam(required = false) String introduce,
+            @RequestParam(required = false, defaultValue = "") String introduce,
+            @RequestParam(required = false, defaultValue = "") String skill,
             @RequestParam String types,
             @RequestParam MultipartFile photo,
             ModelMap modelMap) throws ParseException, IOException
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types);
+        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, skill);
         modelMap.addAttribute("message", "修改成功");
         return "/share/result";
     }

@@ -46,12 +46,12 @@ public class EmployeeService {
 
 
     public boolean addEmployee(String name, String gender, String path, String phone, String birthday, String startDate, String IDCard,
-                               String hometown, String introduce, String types, float salary) throws ParseException {
+                               String hometown, String introduce, String types, float salary, String skill) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
         Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
-        EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path).salary(salary)
+        EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path).salary(salary).skill(skill)
                 .startDate(startJobDate).phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         boolean result = employeeDao.addEmployee(employeeDO);
@@ -65,12 +65,13 @@ public class EmployeeService {
         return result;
     }
 
-    public boolean updateEmployee(int id, String name, String gender, String path, String phone, String birthday, String startDate, String IDCard, String hometown, String introduce, String types) throws ParseException {
+    public boolean updateEmployee(int id, String name, String gender, String path, String phone, String birthday,
+                                  String startDate, String IDCard, String hometown, String introduce, String types, String skill) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
         Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
-        EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender)).photo(path)
+        EmployeeDO employeeDO = EmployeeDO.builder().id(id).name(name).gender(Integer.parseInt(gender)).photo(path).skill(skill)
                 .phone(phone).birthday(birthdayDate).startDate(startJobDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
 
         employeeDao.updateEmployee(employeeDO);

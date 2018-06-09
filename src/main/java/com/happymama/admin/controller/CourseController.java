@@ -8,10 +8,12 @@ import com.happymama.admin.model.OrderDO;
 import com.happymama.admin.service.CourseService;
 import com.happymama.admin.service.CustomerService;
 import com.happymama.admin.service.EmployeeService;
+import com.happymama.admin.utils.DateUtil;
 import com.happymama.admin.utils.PageView;
 import com.happymama.admin.utils.QueryResult;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,6 +51,7 @@ public class CourseController {
         modelMap.addAttribute("courses", courseService.getCourseList());
         modelMap.addAttribute("employeeId", eId);
         modelMap.addAttribute("employeeDO", employeeDO);
+        modelMap.addAttribute("achieveDate", DateUtil.date2str());
         return "/course/list";
     }
 
@@ -54,13 +59,17 @@ public class CourseController {
     public String addCourse(
             @RequestParam int courseId,
             @RequestParam int employeeId,
+            @RequestParam(required = false, defaultValue = "") String achieveDate,
+            @RequestParam(required = false, defaultValue = "0") int achieveType,
             @RequestParam(required = false, defaultValue = "0") float price,
             @RequestParam(required = false, defaultValue = "0") float recommendPrice,
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(required = false, defaultValue = "") String phone,
             ModelMap modelMap
 
-    ) {
+    ) throws ParseException {
+        Date achieveTime = DateUtils.parseDate(achieveDate, new String[]{"yyyy-MM-dd"});
+
         EmployeeDO employeeDO = employeeService.getEmployeeById(employeeId);
         CourseOrderDO.CourseOrderDOBuilder builder = CourseOrderDO.builder();
 
@@ -70,7 +79,8 @@ public class CourseController {
             builder.customerId(customerDO.getId());
         }
 
-        CourseOrderDO courseOrderDO = builder.employeeId(employeeId).price(price).recommendPrice(recommendPrice)
+        CourseOrderDO courseOrderDO = builder.employeeId(employeeId).achieveDate(achieveTime)
+                .achieveType(achieveType).price(price).recommendPrice(recommendPrice)
                 .realPrice(price - recommendPrice).courseId(courseId).build();
 
         courseService.addCourse(courseOrderDO);

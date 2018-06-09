@@ -2,6 +2,8 @@ package com.happymama.admin.model;
 
 import lombok.*;
 
+import java.util.Date;
+
 /**
  * Created by yaoqiang on 2018/5/19.
  */
@@ -14,6 +16,8 @@ import lombok.*;
 public class CourseOrderDO {
     private int id;
     private int employeeId;
+    private Date achieveDate;
+    private int achieveType;
     private float price;
     private float realPrice;
     private float recommendPrice;
