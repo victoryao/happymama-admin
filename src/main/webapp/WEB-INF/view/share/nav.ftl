@@ -51,6 +51,26 @@
             <li class="dropdown show-on-hover">
                 <a href="javascript:;" data-toggle="dropdown">
                     <i class="fa fa-tasks"></i>
+                    <span>快乐课堂</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="${base}/admin/to/knowledge/add.do">
+                            <span>文章发表</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="${base}/admin/knowledge/list.do">
+                            <span>文章查询</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown show-on-hover">
+                <a href="javascript:;" data-toggle="dropdown">
+                    <i class="fa fa-tasks"></i>
                     <span>数据统计</span>
                 </a>
                 <ul class="dropdown-menu">
