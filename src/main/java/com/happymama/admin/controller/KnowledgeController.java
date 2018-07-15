@@ -100,6 +100,8 @@ public class KnowledgeController {
 
     ) throws IOException, ParseException {
         String path = FileUtils.saveFile(photo);
+        title = StringUtils.isBlank(title) ? null : title;
+        content = StringUtils.isBlank(content) ? null : content;
         knowledgeService.updateKnowledge(KnowledgeDO.builder().title(title).content(content).img(path).type(type).build());
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";

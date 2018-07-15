@@ -86,7 +86,8 @@
                             <header class="panel-heading">文章列表</header>
                             <div class="panel-body no-padding">
                                 <div class="table-responsive">
-                                    <form action="${base}/admin/employee/list.do">
+                                    <form action="${base}/admin/knowledge/list.do">
+                                        <input type="hidden" name="page" id="page"/>
                                         <table class="table table-striped responsive" data-sortable>
                                             <thead>
                                             <tr>

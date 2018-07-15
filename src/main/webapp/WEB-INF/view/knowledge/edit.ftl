@@ -34,7 +34,7 @@
     <script type="text/javascript" src="${base}/js/fckeditor.js"></script>
     <script type="text/javascript">
         window.onload = function () {
-            var sBasePath = "/fckeditor/";
+            var sBasePath = "${base}/fckeditor/";
             var oFCKeditor = new FCKeditor('content');
             oFCKeditor.BasePath = sBasePath;
             oFCKeditor.Height = 500;
