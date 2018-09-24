@@ -1,6 +1,5 @@
 package com.happymama.admin.controller;
 
-import com.google.common.base.Splitter;
 import com.happymama.admin.constant.Constant;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.service.EmployeeService;
@@ -18,11 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by yaoqiang on 2018/3/18.
@@ -70,11 +67,12 @@ public class EmployeeController {
             @RequestParam(required = false, defaultValue = "") String skill,
             @RequestParam String types,
             @RequestParam MultipartFile photo,
+            @RequestParam(required = false, defaultValue = "0") float salary,
             ModelMap modelMap) throws ParseException, IOException
 
     {
         String path = FileUtils.saveFile(photo);
-        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, skill);
+        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill);
         modelMap.addAttribute("message", "修改成功");
         return "/share/result";
     }

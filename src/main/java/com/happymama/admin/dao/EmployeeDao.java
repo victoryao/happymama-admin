@@ -25,6 +25,7 @@ public interface EmployeeDao {
             "<if test='idcard != null'> , idcard = #{idcard}</if> ",
             "<if test='skill != null'> , skill = #{skill}</if> ",
             "<if test='hometown != null'> , hometown = #{hometown}</if> ",
+            "<if test='salary != 0'> , salary = #{salary}</if> ",
             "<if test='introduce != null'> , introduce = #{introduce}</if> ",
             " where id = #{id}", "</script>"})
     public void updateEmployee(EmployeeDO employeeDO);
