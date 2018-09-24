@@ -84,7 +84,8 @@ public class OrderController {
             @RequestParam(required = false, defaultValue = "") String recommendName,
             @RequestParam(required = false, defaultValue = "") String recommendPhone,
             ModelMap modelMap) throws ParseException, IOException {
-        if (orderService.addOrder(employeeId, name, phone, address, startDate, endDate, price, memo, orderType, realPrice, recommendPrice, recommendName, recommendPhone)) {
+        if (orderService.addOrder(employeeId, name, phone, address, startDate, endDate, price, memo, orderType,
+                realPrice, recommendPrice, recommendName, recommendPhone)) {
             modelMap.addAttribute("message", "增加成功");
         } else {
             modelMap.addAttribute("message", "此时间段不可预约");

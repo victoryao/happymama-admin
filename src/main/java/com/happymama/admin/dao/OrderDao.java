@@ -19,7 +19,7 @@ public interface OrderDao {
 //            "<if test='startDate != null'> and (#{startDate} between start_date and end_date</if>",
 //            "<if test='startDate != null and endDate == null'> ) </if>",
 //            "<if test='endDate != null'> or #{endDate} between start_date and end_date) </if>",
-            "  order by start_date desc limit #{offset},#{limit}", "</script>"})
+            "  order by id desc limit #{offset},#{limit}", "</script>"})
     public List<OrderDO> getOrders(@Param("employeeId") int employeeId, @Param("startDate") String startDate,
                                    @Param("endDate") String endDate, @Param("idList") String idList,
                                    @Param("status") int status,
