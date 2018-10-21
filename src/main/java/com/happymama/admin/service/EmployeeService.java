@@ -46,13 +46,13 @@ public class EmployeeService {
 
 
     public boolean addEmployee(String name, String gender, String path, String phone, String birthday, String startDate, String IDCard,
-                               String hometown, String introduce, String types, float salary, String skill) throws ParseException {
+                               String hometown, String introduce, String types, float salary, String skill, int co) throws ParseException {
         if (birthday == null) return false;
         Date birthdayDate = DateUtils.parseDate(birthday, new String[]{"yyyy-MM-dd"});
         Date startJobDate = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
 
         EmployeeDO employeeDO = EmployeeDO.builder().name(name).gender(Integer.parseInt(gender)).photo(path).salary(salary).skill(skill)
-                .startDate(startJobDate).phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).build();
+                .startDate(startJobDate).phone(phone).birthday(birthdayDate).idcard(IDCard).hometown(hometown).introduce(introduce).co(co).build();
 
         boolean result = employeeDao.addEmployee(employeeDO);
 
@@ -86,17 +86,17 @@ public class EmployeeService {
         return true;
     }
 
-    public QueryResult<EmployeeDO> getEmployeeList(String name, String phone, String types, int offset, int limit) {
+    public QueryResult<EmployeeDO> getEmployeeList(String name, String phone, int co, String types, int offset, int limit) {
         QueryResult<EmployeeDO> qr = new QueryResult<>();
-        List<EmployeeDO> list = employeeDao.getEmployeeList(name, phone, types, offset, limit);
-        long count = getEmployeeCount(name, phone, types);
+        List<EmployeeDO> list = employeeDao.getEmployeeList(name, phone, co, types, offset, limit);
+        long count = getEmployeeCount(name, phone, co, types);
         qr.setResultlist(list);
         qr.setTotalrecord(count);
         return qr;
     }
 
-    private long getEmployeeCount(String name, String phone, String types) {
-        return employeeDao.getEmployeeCount(name, phone, types);
+    private long getEmployeeCount(String name, String phone, int co, String types) {
+        return employeeDao.getEmployeeCount(name, phone, co, types);
     }
 
     private List<EmployeeDO> getEmployeeByName(String name) {

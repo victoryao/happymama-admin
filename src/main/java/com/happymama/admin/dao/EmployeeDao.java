@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface EmployeeDao {
 
-    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `skill`, `start_date`,`idcard`,`hometown`,`introduce`, `salary`, `created`, `updated`) " +
-            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday},  #{skill}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, #{salary}, now(), now())")
+    @Insert("insert into employee(`name`,`gender`,`phone`, `photo` ,`birthday`, `skill`, `start_date`,`idcard`,`hometown`,`introduce`, `salary`, `created`, `updated`, `co`) " +
+            "values(#{name},#{gender},#{phone}, #{photo}, #{birthday},  #{skill}, #{startDate}, #{idcard}, #{hometown}, #{introduce}, #{salary}, now(), now(), #{co})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
     public boolean addEmployee(EmployeeDO employeeDO);
 
@@ -41,19 +41,19 @@ public interface EmployeeDao {
     public boolean deleteEmployeeById(@Param("id") int id);
 
 
-    @Select({"<script>", "select * from employee where 1=1  ",
+    @Select({"<script>", "select * from employee where co=#{co}  ",
             "<if test='name != null'> and name like CONCAT(#{name}, '%')</if>",
             "<if test='phone != null'> and phone = #{phone}</if> ",
             "<if test='types != null'> and id in (select employee_id from employee_position where position in (#{types}))</if> ",
             " order by id desc limit #{offset},#{limit}", "</script>"})
-    public List<EmployeeDO> getEmployeeList(@Param("name") String name, @Param("phone") String phone, @Param("types") String types,
+    public List<EmployeeDO> getEmployeeList(@Param("name") String name, @Param("phone") String phone, @Param("co") int co, @Param("types") String types,
                                             @Param("offset") int offset, @Param("limit") int limit);
 
-    @Select({"<script>", "select count(1) from employee where 1=1 ",
+    @Select({"<script>", "select count(1) from employee where co=#{co} ",
             "<if test='name != null'> and name like CONCAT(#{name}, '%')</if>",
             "<if test='phone != null'> and phone = #{phone}</if> ",
             "<if test='types != null'> and id in (select employee_id from employee_position where position in (#{types}))</if> ",
             "</script>"})
-    public long getEmployeeCount(@Param("name") String name, @Param("phone") String phone, @Param("types") String types);
+    public long getEmployeeCount(@Param("name") String name, @Param("phone") String phone, @Param("co") int co, @Param("types") String types);
 
 }

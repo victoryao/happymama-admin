@@ -31,4 +31,5 @@ public class EmployeeDO {
     private float salary;
     private Date created;
     private Date updated;
+    private int co;
 }

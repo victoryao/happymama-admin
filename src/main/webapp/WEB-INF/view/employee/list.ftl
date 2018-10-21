@@ -141,7 +141,7 @@
                                                     <#if (employee.photo == "")><img src="${base}/img/default.jpg"
                                                                                      height="100" width="100"/> </#if>
                                                     <#if (employee.photo != "")><img
-                                                            src="/imgs/${employee.photo}" height="100"
+                                                            src="${employee.photo}" height="100"
                                                             width="100"/> </#if>
                                                 </td>
                                                 <td>${employee.name}</td>
@@ -153,12 +153,14 @@
                                                 <td>${employee.idcard}</td>
                                                 <td><a href="${base}/admin/${employee.id}/update.do"
                                                        class="btn btn-danger btn-sm">修改</a>
-                                                <#--<a href="${base}/admin/${employee.id}/delete.do"-->
-                                                <#--class="btn btn-danger btn-sm">删除</a>-->
+                                                    <a href="${base}/admin/${employee.id}/delete.do"
+                                                       class="btn btn-danger btn-sm">删除</a>
                                                     <a href="${base}/admin/course/list.do?eId=${employee.id}"
                                                        class="btn btn-danger btn-sm">技能/培训</a>
                                                     <a href="${base}/admin/order/list.do?eId=${employee.id}"
                                                        class="btn btn-danger btn-sm">订单</a>
+                                                    <a href="${base}/admin/schedule/manager.do?eId=${employee.id}"
+                                                       class="btn btn-danger btn-sm">档期管理</a>
                                                 </td>
                                             </tr>
                                             </#list>

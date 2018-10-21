@@ -1,8 +1,11 @@
 package com.happymama.admin.controller;
 
+import com.google.common.base.Splitter;
 import com.happymama.admin.constant.Constant;
+import com.happymama.admin.model.AdminDO;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.service.EmployeeService;
+import com.happymama.admin.utils.FileUploadUtil;
 import com.happymama.admin.utils.FileUtils;
 import com.happymama.admin.utils.PageView;
 import com.happymama.admin.utils.QueryResult;
@@ -17,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by yaoqiang on 2018/3/18.
@@ -44,11 +49,18 @@ public class EmployeeController {
             @RequestParam(required = false, defaultValue = "") String skill,
             @RequestParam String types,
             @RequestParam(required = false, defaultValue = "0") float salary,
+            HttpSession httpSession,
             ModelMap modelMap) throws ParseException, IOException
 
     {
-        String path = FileUtils.saveFile(photo);
-        employeeService.addEmployee(name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill);
+        String url = null;
+        if (!photo.isEmpty()) {
+            String imgName = UUID.randomUUID().toString() + "." + Splitter.on(".").splitToList(photo.getOriginalFilename()).get(1);
+            FileUploadUtil.uploadImg(imgName, photo.getInputStream());
+            url = FileUploadUtil.getImgUrl(imgName);
+        }
+        AdminDO adminDO = (AdminDO) httpSession.getAttribute(Constant.sessionCheckKey);
+        employeeService.addEmployee(name, gender, url, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill, adminDO.getCo());
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }
@@ -71,8 +83,13 @@ public class EmployeeController {
             ModelMap modelMap) throws ParseException, IOException
 
     {
-        String path = FileUtils.saveFile(photo);
-        employeeService.updateEmployee(id, name, gender, path, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill);
+        String url = null;
+        if (!photo.isEmpty()) {
+            String imgName = UUID.randomUUID().toString() + "." + Splitter.on(".").splitToList(photo.getOriginalFilename()).get(1);
+            FileUploadUtil.uploadImg(imgName, photo.getInputStream());
+            url = FileUploadUtil.getImgUrl(imgName);
+        }
+        employeeService.updateEmployee(id, name, gender, url, phone, birthday, startDate, IDCard, hometown, introduce, types, salary, skill);
         modelMap.addAttribute("message", "修改成功");
         return "/share/result";
     }
@@ -102,6 +119,7 @@ public class EmployeeController {
             @RequestParam(required = false, defaultValue = "") String types,
             @RequestParam(required = false, defaultValue = "10") int limit,
             @RequestParam(required = false, defaultValue = "1") int page,
+            HttpSession httpSession,
             ModelMap modelMap) {
         if (limit > 100) {
             limit = Constant.pageSize;
@@ -110,7 +128,8 @@ public class EmployeeController {
         name = StringUtils.isBlank(name) ? null : name;
         phone = StringUtils.isBlank(phone) ? null : phone;
         types = StringUtils.isBlank(types) ? null : types;
-        QueryResult<EmployeeDO> qr = employeeService.getEmployeeList(name, phone, types, pageView.getFirstResult(), pageView.getMaxresult());
+        AdminDO adminDO = (AdminDO) httpSession.getAttribute(Constant.sessionCheckKey);
+        QueryResult<EmployeeDO> qr = employeeService.getEmployeeList(name, phone, adminDO.getCo(), types, pageView.getFirstResult(), pageView.getMaxresult());
         pageView.setQueryResult(qr);
         modelMap.addAttribute("pageView", pageView);
         modelMap.addAttribute("name", name);
