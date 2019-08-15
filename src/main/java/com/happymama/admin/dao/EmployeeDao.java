@@ -1,6 +1,7 @@
 package com.happymama.admin.dao;
 
 import com.happymama.admin.model.EmployeeDO;
+import com.happymama.admin.model.EmployeePhotoDO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -56,4 +57,12 @@ public interface EmployeeDao {
             "</script>"})
     public long getEmployeeCount(@Param("name") String name, @Param("phone") String phone, @Param("co") int co, @Param("types") String types);
 
+
+    @Insert("insert into employee_photo(`employee_id`,`img`,`type`,`created`) " +
+            "values(#{employeeId},#{img},#{type}, now())")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID() as id", keyProperty = "id", before = false, resultType = Integer.class)
+    public boolean addEmployeePhoto(EmployeePhotoDO employeePhotoDO);
+
+    @Select({"select * from employee_photo where employee_id = #{employeeId} and type = #{type} "})
+    public List<EmployeePhotoDO> getEmployeePhotoList(@Param("employeeId") int employeeId, @Param("type") int type);
 }

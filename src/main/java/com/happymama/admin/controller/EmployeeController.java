@@ -150,4 +150,15 @@ public class EmployeeController {
     }
 
 
+    @RequestMapping(value = "/admin/photo/update", method = RequestMethod.GET)
+    public String photoUpdate(
+            @RequestParam int eId,
+            ModelMap modelMap) throws ParseException, IOException
+
+    {
+        modelMap.addAttribute("eId", eId);
+        return "/employee/photo";
+    }
+
+
 }

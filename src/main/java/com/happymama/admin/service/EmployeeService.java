@@ -6,12 +6,15 @@ import com.google.common.collect.Collections2;
 import com.happymama.admin.dao.EmployeeDao;
 import com.happymama.admin.dao.EmployeePositionDao;
 import com.happymama.admin.model.EmployeeDO;
+import com.happymama.admin.model.EmployeePhotoDO;
 import com.happymama.admin.model.EmployeePositionDO;
 import com.happymama.admin.utils.QueryResult;
 import lombok.extern.java.Log;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +35,15 @@ public class EmployeeService {
     private EmployeeDao employeeDao;
     @Resource
     private EmployeePositionDao employeePositionDao;
+
+
+    public boolean addEmployeePhoto(EmployeePhotoDO employeePhotoDO) {
+        return employeeDao.addEmployeePhoto(employeePhotoDO);
+    }
+
+    public List<EmployeePhotoDO> getEmployeePhotoList(@Param("employeeId") int employeeId, @Param("type") int type) {
+        return employeeDao.getEmployeePhotoList(employeeId, type);
+    }
 
 
     public EmployeeDO getEmployeeById(int id) {
