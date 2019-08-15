@@ -84,7 +84,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                    <#if (eId  !="0" )!>
+
                         <section class="panel">
                             <header class="panel-heading">个人信息</header>
                             <div class="panel-body">
@@ -101,51 +101,6 @@
                             </div>
                         </section>
 
-                    </#if>
-
-                        <section class="panel">
-                            <header class="panel-heading">查询</header>
-                            <div class="panel-body">
-                                <form class="form-inline" role="form" action="${base}/admin/order/list.do">
-                                    <input type="hidden" name="page" id="page"/>
-                                    <input type="hidden" name="eId" id="eId" value="${eId}"/>
-
-                                <#if (eId  =="0" )!>
-                                    <div class="form-group">
-                                        员工姓名:<label class="sr-only">员工姓名</label>
-                                        <input type="text" name="name" class="form-control"
-                                               placeholder="员工姓名" value="${name}">
-                                    </div>
-                                </#if>
-
-                                    订单开始时间:
-                                    <div class="input-group mg-b-md input-append date datepicker"
-                                         data-date-format="yyyy-mm-dd">
-                                        <input type="text" name="startDate" class="form-control"
-                                               title="订单开始时间" value="${startDate}">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-white add-on" type="button">
-                                                <i class="fa fa-calendar"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-
-                                    订单结束时间:
-                                    <div class="input-group mg-b-md input-append date datepicker"
-                                         data-date-format="yyyy-mm-dd">
-                                        <input type="text" name="endDate" class="form-control"
-                                               title="订单结束时间" value="${endDate}">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-white add-on" type="button">
-                                                <i class="fa fa-calendar"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-default">查询</button>
-                                </form>
-                            </div>
-                        </section>
                     </div>
                 </div>
 

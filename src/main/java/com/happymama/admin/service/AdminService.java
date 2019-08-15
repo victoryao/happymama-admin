@@ -1,6 +1,7 @@
 package com.happymama.admin.service;
 
 import com.happymama.admin.dao.AdminDao;
+import com.happymama.admin.model.AdminDO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ public class AdminService {
     @Resource
     private AdminDao adminDao;
 
-    public boolean login(String name, String password) {
-        return adminDao.login(name, password) != null;
+    public AdminDO login(String name, String password) {
+        return adminDao.login(name, password);
     }
 }

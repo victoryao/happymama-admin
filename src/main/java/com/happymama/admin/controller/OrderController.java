@@ -1,6 +1,7 @@
 package com.happymama.admin.controller;
 
 import com.happymama.admin.constant.Constant;
+import com.happymama.admin.model.AdminDO;
 import com.happymama.admin.model.CustomerDO;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.model.OrderDO;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -42,17 +44,19 @@ public class OrderController {
                             @RequestParam(required = false, defaultValue = "") String endDate,
                             @RequestParam(required = false, defaultValue = "10") int limit,
                             @RequestParam(required = false, defaultValue = "1") int page,
+                            HttpSession httpSession,
                             ModelMap modelMap
 
     ) {
         if (limit > 100) {
             limit = Constant.pageSize;
         }
+        AdminDO adminDO = (AdminDO) httpSession.getAttribute(Constant.sessionCheckKey);
         PageView<OrderDO> pageView = new PageView<>(limit, page);
         startDate = StringUtils.isBlank(startDate) ? null : startDate;
         endDate = StringUtils.isBlank(endDate) ? null : endDate;
         name = StringUtils.isBlank(name) ? null : name;
-        QueryResult<OrderDO> qr = orderService.getOrders(eId, name, startDate, endDate, status,
+        QueryResult<OrderDO> qr = orderService.getOrders(eId, name, startDate, endDate, status, adminDO.getCo(),
                 pageView.getFirstResult(), pageView.getMaxresult());
         EmployeeDO employeeDO = employeeService.getEmployeeById(eId);
         pageView.setQueryResult(qr);
@@ -83,9 +87,11 @@ public class OrderController {
             @RequestParam(required = false, defaultValue = "0") float recommendPrice,
             @RequestParam(required = false, defaultValue = "") String recommendName,
             @RequestParam(required = false, defaultValue = "") String recommendPhone,
+            HttpSession httpSession,
             ModelMap modelMap) throws ParseException, IOException {
+        AdminDO adminDO = (AdminDO) httpSession.getAttribute(Constant.sessionCheckKey);
         if (orderService.addOrder(employeeId, name, phone, address, startDate, endDate, price, memo, orderType,
-                realPrice, recommendPrice, recommendName, recommendPhone)) {
+                realPrice, recommendPrice, recommendName, recommendPhone, adminDO.getCo())) {
             modelMap.addAttribute("message", "增加成功");
         } else {
             modelMap.addAttribute("message", "此时间段不可预约");
@@ -104,9 +110,11 @@ public class OrderController {
             @RequestParam String startDate,
             @RequestParam String endDate,
             @RequestParam float price,
+            HttpSession httpSession,
             @RequestParam(required = false, defaultValue = "") String memo,
             ModelMap modelMap) throws ParseException, IOException {
-        if (orderService.updateOrder(orderId, employeeId, customerId, name, phone, address, startDate, endDate, price, memo)) {
+        AdminDO adminDO = (AdminDO) httpSession.getAttribute(Constant.sessionCheckKey);
+        if (orderService.updateOrder(orderId, employeeId, customerId, name, phone, address, startDate, endDate, price, memo, adminDO.getCo())) {
             modelMap.addAttribute("message", "修改成功");
         } else {
             modelMap.addAttribute("message", "此时间段不可预约");

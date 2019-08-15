@@ -39,10 +39,10 @@ public class OrderService {
     }
 
     public QueryResult<OrderDO> getOrders(int employeeId, String name, String startDate,
-                                          String endDate, int status, int offset, int limit) {
+                                          String endDate, int status, int co, int offset, int limit) {
         String idList = employeeService.getEmployeeIdJoinByName(name);
         QueryResult<OrderDO> qr = new QueryResult<>();
-        List<OrderDO> list = orderDao.getOrders(employeeId, startDate, endDate, idList, status, offset, limit);
+        List<OrderDO> list = orderDao.getOrders(employeeId, startDate, endDate, idList, status, co, offset, limit);
 
         if (CollectionUtils.isNotEmpty(list)) {
             for (OrderDO orderDO : list) {
@@ -57,23 +57,23 @@ public class OrderService {
                 }
             }
         }
-        long count = getOrderCount(employeeId, idList, startDate, endDate, status);
+        long count = getOrderCount(employeeId, idList, startDate, co, endDate, status);
         qr.setResultlist(list);
         qr.setTotalrecord(count);
         return qr;
     }
 
-    private long getOrderCount(int employeeId, String idList, String startDate, String endDate, int status) {
-        return orderDao.getOrderCount(employeeId, idList, startDate, endDate, status);
+    private long getOrderCount(int employeeId, String idList, String startDate, int co, String endDate, int status) {
+        return orderDao.getOrderCount(employeeId, idList, startDate, co, endDate, status);
     }
 
     @Transactional
     public boolean addOrder(int eId, String name, String phone, String address, String startDate, String endDate,
-                            float price, String memo, int orderType, float realPrice, float recommendPrice, String recommendName, String recommendPhone) throws ParseException {
+                            float price, String memo, int orderType, float realPrice, float recommendPrice, String recommendName, String recommendPhone, int co) throws ParseException {
         int recommendCustomerId = 0;
         Date start = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
         Date end = DateUtils.parseDate(endDate, new String[]{"yyyy-MM-dd"});
-        if (!isOrderAvailable(0, eId, startDate, endDate)) {
+        if (!isOrderAvailable(0, eId, co, startDate, endDate)) {
             return false;
         }
 
@@ -88,7 +88,7 @@ public class OrderService {
             recommendCustomerId = recommendCustomer.getId();
         }
 
-        OrderDO orderDO = OrderDO.builder().employeeId(eId).customerId(customerDO.getId()).price(price).type(orderType).status(1)
+        OrderDO orderDO = OrderDO.builder().employeeId(eId).customerId(customerDO.getId()).price(price).type(orderType).status(1).co(co)
                 .startDate(start).endDate(end).memo(memo).realPrice(realPrice).recommendPrice(recommendPrice).build();
         orderDao.addOrder(orderDO);
 
@@ -97,8 +97,8 @@ public class OrderService {
         return true;
     }
 
-    public boolean isOrderAvailable(int orderId, int eId, String startDate, String endDate) {
-        OrderDO orderDO = orderDao.getFirstOrderAvailable(eId, startDate, endDate);
+    public boolean isOrderAvailable(int orderId, int eId, int co, String startDate, String endDate) {
+        OrderDO orderDO = orderDao.getFirstOrderAvailable(eId, co, startDate, endDate);
         return orderDO == null || orderDO.getId() == orderId;
     }
 
@@ -106,10 +106,10 @@ public class OrderService {
         orderDao.deleteOrderById(orderId);
     }
 
-    public boolean updateOrder(int orderId, int employeeId, int customerId, String name, String phone, String address, String startDate, String endDate, float price, String memo) throws ParseException {
+    public boolean updateOrder(int orderId, int employeeId, int customerId, String name, String phone, String address, String startDate, String endDate, float price, String memo, int co) throws ParseException {
         Date start = DateUtils.parseDate(startDate, new String[]{"yyyy-MM-dd"});
         Date end = DateUtils.parseDate(endDate, new String[]{"yyyy-MM-dd"});
-        if (!isOrderAvailable(orderId, employeeId, startDate, endDate)) {
+        if (!isOrderAvailable(orderId, employeeId, co, startDate, endDate)) {
             return false;
         }
         CustomerDO customerDO = CustomerDO.builder().id(customerId).name(name).phone(phone).address(address).build();

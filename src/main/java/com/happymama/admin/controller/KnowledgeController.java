@@ -1,9 +1,11 @@
 package com.happymama.admin.controller;
 
+import com.google.common.base.Splitter;
 import com.happymama.admin.constant.Constant;
 import com.happymama.admin.model.EmployeeDO;
 import com.happymama.admin.model.KnowledgeDO;
 import com.happymama.admin.service.KnowledgeService;
+import com.happymama.admin.utils.FileUploadUtil;
 import com.happymama.admin.utils.FileUtils;
 import com.happymama.admin.utils.PageView;
 import com.happymama.admin.utils.QueryResult;
@@ -21,6 +23,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by yaoqiang on 2018/6/22.
@@ -40,8 +43,13 @@ public class KnowledgeController {
             ModelMap modelMap) throws ParseException, IOException
 
     {
-        String path = FileUtils.saveFile(photo);
-        knowledgeService.addKnowledge(KnowledgeDO.builder().title(title).content(content).img(path == null ? StringUtils.EMPTY : path).type(type).build());
+        String url = null;
+        if (!photo.isEmpty()) {
+            String imgName = UUID.randomUUID().toString() + "." + Splitter.on(".").splitToList(photo.getOriginalFilename()).get(1);
+            FileUploadUtil.uploadImg(imgName, photo.getInputStream());
+            url = FileUploadUtil.getImgUrl(imgName);
+        }
+        knowledgeService.addKnowledge(KnowledgeDO.builder().title(title).content(content).img(url == null ? StringUtils.EMPTY : url).type(type).build());
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }
@@ -99,10 +107,15 @@ public class KnowledgeController {
             ModelMap modelMap
 
     ) throws IOException, ParseException {
-        String path = FileUtils.saveFile(photo);
+        String url = null;
+        if (!photo.isEmpty()) {
+            String imgName = UUID.randomUUID().toString() + "." + Splitter.on(".").splitToList(photo.getOriginalFilename()).get(1);
+            FileUploadUtil.uploadImg(imgName, photo.getInputStream());
+            url = FileUploadUtil.getImgUrl(imgName);
+        }
         title = StringUtils.isBlank(title) ? null : title;
         content = StringUtils.isBlank(content) ? null : content;
-        knowledgeService.updateKnowledge(KnowledgeDO.builder().title(title).content(content).img(path).type(type).build());
+        knowledgeService.updateKnowledge(KnowledgeDO.builder().title(title).content(content).img(url).type(type).build());
         modelMap.addAttribute("message", "增加成功");
         return "/share/result";
     }

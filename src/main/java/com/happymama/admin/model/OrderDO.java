@@ -27,6 +27,7 @@ public class OrderDO {
     private Date endDate;
     private int type;
     private int status;
+    private int co;
     private String memo;
     private Date created;
     private Date updated;
