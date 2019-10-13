@@ -13,46 +13,23 @@
 
     <title>新新妈咪管理后台</title>
 
-    <link rel="stylesheet" href="/vendor/table-sortable/theme.css">
-    <link rel="stylesheet" href="/vendor/offline/theme.css">
-    <link rel="stylesheet" href="/vendor/pace/theme.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-    <link rel="stylesheet" href="${base}/css/skins/palette.1.css" id="skin">
-    <link rel="stylesheet" href="${base}/css/fonts/style.1.css" id="font">
-    <link rel="stylesheet" href="${base}/vendor/offline/theme.css">
-    <link rel="stylesheet" href="${base}/css/fonts/style.1.css" id="font">
-    <link rel="stylesheet" href="${base}/css/main.css">
+
     <script src="${base}/vendor/jquery-1.11.1.min.js"></script>
-    <script src="${base}/bootstrap/js/bootstrap.js"></script>
-    <!--[if lt IE 9]>
-    <script src="${base}/js/html5shiv.js"></script>
-    <script src="${base}/js/respond.min.js"></script>
-    <![endif]-->
-    <script src="${base}/vendor/modernizr.js"></script>
-    <!--[if lt IE 9]>
-    <script src="${base}/js/html5shiv.js"></script>
-    <script src="${base}/js/respond.min.js"></script>
-    <![endif]-->
-    <script src="${base}/vendor/modernizr.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="${base}/css/webuploader.css">
+
+    <script type="text/javascript" src="${base}/js/webuploader.html5only.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="${base}/css/diyUpload.css">
     <script type="text/javascript" src="${base}/js/diyUpload.js"></script>
-    <link rel="stylesheet" type="text/css" href="${base}/css/webuploader.css">
-    <script type="text/javascript" src="${base}/js/webuploader.html5only.min.js"></script>
+
+
+
 
     <style>
 
-        html,body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+        *{ margin:0; padding:0;}
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
 
         #lifePhoto {
             margin: 50px auto;
@@ -74,22 +51,9 @@
 <body>
 <div class="app">
 
-    <header class="header header-fixed navbar">
-        <div class="brand">
-            <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
-            <a href="${base}/home.do" class="navbar-brand text-white">
-                <i class="fa fa-stop mg-r-sm"></i>
-                <span class="heading-font">
-                <b>新新妈咪管理后台</b>
-                </span>
-            </a>
-        </div>
-
-    </header>
 
     <section class="layout">
 
-    <#include "../../share/nav.ftl" >
 
         <section class="main-content">
 
